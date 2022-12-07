@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/code.dir/main.cpp.o CMakeFiles/code.dir/UserSystem.cpp.o CMakeFiles/code.dir/BookSystem.cpp.o CMakeFiles/code.dir/LogFinance.cpp.o CMakeFiles/code.dir/LogUser.cpp.o CMakeFiles/code.dir/Command.cpp.o CMakeFiles/code.dir/UnrolledLinkList.cpp.o -o code 
