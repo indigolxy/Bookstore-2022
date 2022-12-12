@@ -11,3 +11,5 @@ add_executable(code main.cpp
         Command.cpp
         UnrolledLinkList.cpp
         )
+
+add_executable(test 1774.cpp)

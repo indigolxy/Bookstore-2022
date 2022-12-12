@@ -129,6 +129,43 @@ code/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
 .PHONY : code/fast
 
+#=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+1774.o: 1774.cpp.o
+.PHONY : 1774.o
+
+# target to build an object file
+1774.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.o
+.PHONY : 1774.cpp.o
+
+1774.i: 1774.cpp.i
+.PHONY : 1774.i
+
+# target to preprocess a source file
+1774.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.i
+.PHONY : 1774.cpp.i
+
+1774.s: 1774.cpp.s
+.PHONY : 1774.s
+
+# target to generate assembly for a file
+1774.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.s
+.PHONY : 1774.cpp.s
+
 BookSystem.o: BookSystem.cpp.o
 .PHONY : BookSystem.o
 
@@ -306,6 +343,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... code"
+	@echo "... test"
+	@echo "... 1774.o"
+	@echo "... 1774.i"
+	@echo "... 1774.s"
 	@echo "... BookSystem.o"
 	@echo "... BookSystem.i"
 	@echo "... BookSystem.s"

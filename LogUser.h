@@ -5,10 +5,8 @@
 #ifndef BOOKSTORE_2022_LOGUSER_H
 #define BOOKSTORE_2022_LOGUSER_H
 
-#include <string>
-
 // 向外存写入完整指令和用户
-void WriteLogUser(const std::string &user_id,const std::string &command);
+void WriteLogUser(char user_id[35],const char * &command);
 
 void ShowUserLogAll();
 
