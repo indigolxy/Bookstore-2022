@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named code
-
-# Build rule for target.
-code: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 code
-.PHONY : code
-
-# fast build rule for target.
-code/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
-.PHONY : code/fast
-
-#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -166,173 +153,29 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.s
 .PHONY : 1774.cpp.s
 
-BookSystem.o: BookSystem.cpp.o
-.PHONY : BookSystem.o
+1774test.o: 1774test.cpp.o
+.PHONY : 1774test.o
 
 # target to build an object file
-BookSystem.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/BookSystem.cpp.o
-.PHONY : BookSystem.cpp.o
+1774test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.o
+.PHONY : 1774test.cpp.o
 
-BookSystem.i: BookSystem.cpp.i
-.PHONY : BookSystem.i
-
-# target to preprocess a source file
-BookSystem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/BookSystem.cpp.i
-.PHONY : BookSystem.cpp.i
-
-BookSystem.s: BookSystem.cpp.s
-.PHONY : BookSystem.s
-
-# target to generate assembly for a file
-BookSystem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/BookSystem.cpp.s
-.PHONY : BookSystem.cpp.s
-
-Command.o: Command.cpp.o
-.PHONY : Command.o
-
-# target to build an object file
-Command.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/Command.cpp.o
-.PHONY : Command.cpp.o
-
-Command.i: Command.cpp.i
-.PHONY : Command.i
+1774test.i: 1774test.cpp.i
+.PHONY : 1774test.i
 
 # target to preprocess a source file
-Command.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/Command.cpp.i
-.PHONY : Command.cpp.i
+1774test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.i
+.PHONY : 1774test.cpp.i
 
-Command.s: Command.cpp.s
-.PHONY : Command.s
-
-# target to generate assembly for a file
-Command.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/Command.cpp.s
-.PHONY : Command.cpp.s
-
-LogFinance.o: LogFinance.cpp.o
-.PHONY : LogFinance.o
-
-# target to build an object file
-LogFinance.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogFinance.cpp.o
-.PHONY : LogFinance.cpp.o
-
-LogFinance.i: LogFinance.cpp.i
-.PHONY : LogFinance.i
-
-# target to preprocess a source file
-LogFinance.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogFinance.cpp.i
-.PHONY : LogFinance.cpp.i
-
-LogFinance.s: LogFinance.cpp.s
-.PHONY : LogFinance.s
+1774test.s: 1774test.cpp.s
+.PHONY : 1774test.s
 
 # target to generate assembly for a file
-LogFinance.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogFinance.cpp.s
-.PHONY : LogFinance.cpp.s
-
-LogUser.o: LogUser.cpp.o
-.PHONY : LogUser.o
-
-# target to build an object file
-LogUser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogUser.cpp.o
-.PHONY : LogUser.cpp.o
-
-LogUser.i: LogUser.cpp.i
-.PHONY : LogUser.i
-
-# target to preprocess a source file
-LogUser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogUser.cpp.i
-.PHONY : LogUser.cpp.i
-
-LogUser.s: LogUser.cpp.s
-.PHONY : LogUser.s
-
-# target to generate assembly for a file
-LogUser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/LogUser.cpp.s
-.PHONY : LogUser.cpp.s
-
-UnrolledLinkList.o: UnrolledLinkList.cpp.o
-.PHONY : UnrolledLinkList.o
-
-# target to build an object file
-UnrolledLinkList.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UnrolledLinkList.cpp.o
-.PHONY : UnrolledLinkList.cpp.o
-
-UnrolledLinkList.i: UnrolledLinkList.cpp.i
-.PHONY : UnrolledLinkList.i
-
-# target to preprocess a source file
-UnrolledLinkList.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UnrolledLinkList.cpp.i
-.PHONY : UnrolledLinkList.cpp.i
-
-UnrolledLinkList.s: UnrolledLinkList.cpp.s
-.PHONY : UnrolledLinkList.s
-
-# target to generate assembly for a file
-UnrolledLinkList.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UnrolledLinkList.cpp.s
-.PHONY : UnrolledLinkList.cpp.s
-
-UserSystem.o: UserSystem.cpp.o
-.PHONY : UserSystem.o
-
-# target to build an object file
-UserSystem.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UserSystem.cpp.o
-.PHONY : UserSystem.cpp.o
-
-UserSystem.i: UserSystem.cpp.i
-.PHONY : UserSystem.i
-
-# target to preprocess a source file
-UserSystem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UserSystem.cpp.i
-.PHONY : UserSystem.cpp.i
-
-UserSystem.s: UserSystem.cpp.s
-.PHONY : UserSystem.s
-
-# target to generate assembly for a file
-UserSystem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/UserSystem.cpp.s
-.PHONY : UserSystem.cpp.s
-
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/main.cpp.s
-.PHONY : main.cpp.s
+1774test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.s
+.PHONY : 1774test.cpp.s
 
 # Help Target
 help:
@@ -342,32 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... code"
 	@echo "... test"
 	@echo "... 1774.o"
 	@echo "... 1774.i"
 	@echo "... 1774.s"
-	@echo "... BookSystem.o"
-	@echo "... BookSystem.i"
-	@echo "... BookSystem.s"
-	@echo "... Command.o"
-	@echo "... Command.i"
-	@echo "... Command.s"
-	@echo "... LogFinance.o"
-	@echo "... LogFinance.i"
-	@echo "... LogFinance.s"
-	@echo "... LogUser.o"
-	@echo "... LogUser.i"
-	@echo "... LogUser.s"
-	@echo "... UnrolledLinkList.o"
-	@echo "... UnrolledLinkList.i"
-	@echo "... UnrolledLinkList.s"
-	@echo "... UserSystem.o"
-	@echo "... UserSystem.i"
-	@echo "... UserSystem.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... 1774test.o"
+	@echo "... 1774test.i"
+	@echo "... 1774test.s"
 .PHONY : help
 
 
