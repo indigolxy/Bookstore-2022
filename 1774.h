@@ -46,7 +46,7 @@ public:
 };
 
 class BlockList {
-    friend int main();
+//    friend int main();
     std::fstream file; // "other.txt" "file.txt"
     bool flag_start = false;
     long tail = 0;
@@ -57,18 +57,20 @@ public:
     ~BlockList();
 
     /*
-     * 从file现有位置读入一个完整node
-     * 函数执行结束后读指针走到data有效数据的最后（empty_data不读，默认构造）
+     * 从file的pos位置读入一个完整node
+     * 函数执行结束后读指针走到data的最后
      */
 
-    node ReadNode();
+    node ReadNode(const long &pos);
 
     /*
-     * 向file中写入一个完整的node
+     * 向file的pos位置中写入一个完整的node
      * 写完后写指针移动至data[MAXSIZE - 1]的最后(empty_pair也要写)
+     * 若在文件最后写入，pos == -1
+     * 否则pos为要写入的块的位置
      */
 
-    void WriteNode(const node &obj);
+    void WriteNode(const node &obj,const long &pos);
 
     /*
      * 找到target应当属于的block（无论target是否存在）
@@ -114,12 +116,14 @@ public:
      * 新增节点需考虑更新tail
      * 在文件开头创建第一个块（节点）
      * head 恒等于 0 (裂块向后裂，并块并到前一个)，保持前一个块不动
+     * 若已存在与target一模一样的元素，则不插入
     */
 
     void insert(char *index,const int &value);
 
     /*
      * 删除以 [index] 为索引，值为 [value] 的条目。请注意，删除的条目可能不存在
+     * 若删完后（--size后）size<MINSIZE，需要并块（==MINSIZE不并）
      * head 恒等于 0 (裂块向后裂，并块并到前一个)，保持前一个块不变
      * 并块记得更新tail
      */

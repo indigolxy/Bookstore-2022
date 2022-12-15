@@ -23,7 +23,8 @@ int main() {
             char index[64 * 8] = {0};
             std::cin >> index;
             std::set<int> ans = the_list.find(index);
-            if (ans.empty()) std::cout << "null" << std::endl;
+
+            if (ans.empty()) std::cout << n << ' ' << "null" << std::endl;
             else {
                 for (auto i : ans) {
                     std::cout << i << ' ';
@@ -31,8 +32,8 @@ int main() {
                 std::cout << '\n';
             }
         }
+//        if (n == 555 || n == 553 || n == 554) std::cout << "STATUS: " << n << ' ' << bool(the_list.file) << std::endl;
 
-        std::cout << "STATUS: " << bool(the_list.file) << std::endl;
     }
     return 0;
 }

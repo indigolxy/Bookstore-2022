@@ -39,37 +39,23 @@ BlockList::~BlockList() {
     file.clear();
 }
 
-node BlockList::ReadNode() { // 读完读指针走到data有效数据的最后
+node BlockList::ReadNode(const long &pos) { // 读完读指针走到data有效数据的最后
+    file.seekg(pos);
     node tmp;
-    file.read(reinterpret_cast<char *> (&tmp.st),sizeof(_pair));
-    file.read(reinterpret_cast<char *> (&tmp.ed),sizeof(_pair));
-    file.read(reinterpret_cast<char *> (&tmp.size),sizeof(int));
-    file.read(reinterpret_cast<char *> (&tmp.prev),sizeof(long));
-    file.read(reinterpret_cast<char *> (&tmp.next),sizeof(long));
-
-    for (int i = 0;i < tmp.size;++i) {
-        file.read(reinterpret_cast<char *> (&tmp.data[i]),sizeof(_pair));
-    }
+    file.read(reinterpret_cast<char *>(&tmp), sizeof(node));
     return tmp;
 }
 
-void BlockList::WriteNode(const node &obj) {
-    file.write(reinterpret_cast<const char *> (&obj.st),sizeof(_pair));
-    file.write(reinterpret_cast<const char *> (&obj.ed),sizeof(_pair));
-    file.write(reinterpret_cast<const char *> (&obj.size),sizeof(int)); // size
-    file.write(reinterpret_cast<const char *> (&obj.prev),sizeof(long)); // prev = p
-    file.write(reinterpret_cast<const char *> (&obj.next),sizeof(long)); // next = p.next
-
-    for (const auto & i : obj.data) {
-        file.write(reinterpret_cast<const char *> (&i),sizeof(_pair));
-    }
+void BlockList::WriteNode(const node &obj,const long &pos) {
+    if (pos == -1) file.seekp(0,std::ios::end);
+    else file.seekp(pos);
+    file.write(reinterpret_cast<char const*>(&obj), sizeof(node));
 }
 
 long BlockList::FindTheBlock(const _pair &target) {
     long p = 0;
     while (true) {
-        file.seekg(p);
-        node node_p = ReadNode();
+        node node_p = ReadNode(p);
         if (node_p.ed >= target) {
             return p;
         }
@@ -84,8 +70,7 @@ long BlockList::FindTheBlockIndex(const char *index) {
     long p = 0;
     node node_p;
     while (true) {
-        file.seekg(p);
-        node_p = ReadNode();
+        node_p = ReadNode(p);
         if (strcmp(index,node_p.ed.index) <= 0) {
             return p;
         }
@@ -110,8 +95,7 @@ void BlockList::RemovePair(node &node_p,const long &p,const int &num) {
     _pair empty_pair;
     node_p.data[node_p.size] = empty_pair;
 
-    file.seekp(p);
-    WriteNode(node_p);
+    WriteNode(node_p,p);
 }
 
 void BlockList::InsertPair(node &node_p,const long &p,const _pair &target,const int &num) {
@@ -127,8 +111,7 @@ void BlockList::InsertPair(node &node_p,const long &p,const _pair &target,const 
     node_p.data[num] = target;
     ++node_p.size;
 
-    file.seekp(p);
-    WriteNode(node_p);
+    WriteNode(node_p,p);
 }
 
 void BlockList::insert(char *index,const int &value) {
@@ -136,10 +119,9 @@ void BlockList::insert(char *index,const int &value) {
     if (!flag_start) {
         // 第一次insert:the very first _pair data
         // 在文件开头创建第一个块（节点）
-        file.seekp(0);
         node tmp(target,target,1,-1,-1);
         tmp.data[0] = target;
-        WriteNode(tmp);
+        WriteNode(tmp,0);
 
         flag_start = true;
         tail = 0;
@@ -148,12 +130,14 @@ void BlockList::insert(char *index,const int &value) {
 
     long p = FindTheBlock(target);
     if (p == -1) p = tail; // 遍历到最后都>每一个ed：插入最后一个节点或者新增一个节点 相当于插入最后一个节点（或许再裂块
-    file.seekg(p);
-    node node_p = ReadNode();
+    node node_p = ReadNode(p);
 
     // 先直接插
     int i = 0;
-    while (node_p.data[i] < target && i < node_p.size) { ++i; }
+    while (node_p.data[i] < target && i < node_p.size) {
+        ++i;
+    }
+    if (node_p.data[i] ==  target) return; // 若重复，不插入
     InsertPair(node_p,p,target,i);
 
     // 再裂开:向后增加 (考虑更新tail）
@@ -165,7 +149,7 @@ void BlockList::insert(char *index,const int &value) {
         }
         file.seekp(0, std::ios::end);
         const long q = file.tellp();
-        WriteNode(tmp);
+        WriteNode(tmp,q);
 
         // 修改p中数据
         node_p.ed = node_p.data[MINSIZE - 1];
@@ -175,8 +159,7 @@ void BlockList::insert(char *index,const int &value) {
         for (int j = MINSIZE;j < MAXSIZE;++j) {
             node_p.data[j] = empty_pair;
         }
-        file.seekp(p);
-        WriteNode(node_p);
+        WriteNode(node_p,p);
 
         if (p == tail) tail = q;
         else {
@@ -193,8 +176,7 @@ void BlockList::remove(char *index,const int &value) {
     const _pair target(index,value);
     long p = FindTheBlock(target);
     if (p == -1) return;
-    file.seekg(p);
-    node node_p = ReadNode();
+    node node_p = ReadNode(p);
     if (node_p.st > target || node_p.ed < target) return; // target不存在
     int num_of_target = -1;
     for (int i = 0;i < node_p.size;++i) {
@@ -207,10 +189,9 @@ void BlockList::remove(char *index,const int &value) {
 
     RemovePair(node_p,p,num_of_target); // node_p也完全修改
     // 并块
-    if (node_p.size < MINSIZE) {
+    if (node_p.size < MINSIZE && p != tail) {
         long q = node_p.next;
-        file.seekg(q);
-        node node_q = ReadNode();
+        node node_q = ReadNode(q);
         if (node_q.size > MINSIZE) {
             // 从后驱借元素
             _pair borrow = node_q.data[0];
@@ -220,8 +201,7 @@ void BlockList::remove(char *index,const int &value) {
         }
         else {
             q = node_p.prev;
-            file.seekg(q);
-            node_q = ReadNode();
+            node_q = ReadNode(q);
             if (node_q.size > MINSIZE) {
                 // 从前驱借元素
                 _pair borrow = node_q.data[node_q.size - 1];
@@ -237,8 +217,7 @@ void BlockList::remove(char *index,const int &value) {
                 for (int i = 0;i < node_p.size;++i) {
                     node_q.data[node_q.size + i] = node_p.data[i];
                 }
-                file.seekp(q);
-                WriteNode(node_q);
+                WriteNode(node_q,q);
 
                 // 再修改node_p.next.prev = q
                 if (p == tail) tail = q;
@@ -257,8 +236,7 @@ std::set<int> BlockList::find(char *index) {
     long p = FindTheBlockIndex(index);
     if (p == -1) return ans;
 
-    file.seekg(p);
-    node node_p = ReadNode();
+    node node_p = ReadNode(p);
     if (strcmp(index,node_p.st.index) < 0) return ans; // index不存在
 
     bool found_index = false;
@@ -274,10 +252,9 @@ std::set<int> BlockList::find(char *index) {
     if (!found_index) return ans; // index不存在
 
     while (true) {
-        p = node_p.next;
         if (p == tail) return ans;
-        file.seekg(p);
-        node_p = ReadNode();
+        p = node_p.next;
+        node_p = ReadNode(p);
         for (int i = 0;i < node_p.size;++i) {
             if (strcmp(node_p.data[i].index,index) == 0) {
                 ans.insert(node_p.data[i].value);
