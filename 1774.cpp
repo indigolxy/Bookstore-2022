@@ -170,6 +170,30 @@ void BlockList::insert(char *index,const int &value) {
     }
 }
 
+void BlockList::BorrowElement(node &node_q,const long &q,node &node_p,const long &p,int take_num,int insert_num) {
+    _pair borrow = node_q.data[take_num];
+    RemovePair(node_q,q,take_num);
+    InsertPair(node_p,p,borrow,insert_num);
+}
+
+void BlockList::Merge(node &node_p,const long &p,node &node_q,const long &q) {
+    // 先修改前驱数据
+    node_q.ed = node_p.ed;
+    node_q.next = node_p.next;
+    for (int i = 0;i < node_p.size;++i) {
+        node_q.data[node_q.size + i] = node_p.data[i];
+    }
+    node_q.size = node_q.size + node_p.size;
+    WriteNode(node_q,q);
+
+    // 再修改node_p.next.prev = q
+    if (p == tail) tail = q;
+    else {
+        file.seekp(node_p.next + 2 * sizeof(_pair) + sizeof(int));
+        file.write(reinterpret_cast<const char *> (&q),sizeof(long));
+    }
+}
+
 void BlockList::remove(char *index,const int &value) {
     if (!flag_start) return;
 
@@ -188,46 +212,45 @@ void BlockList::remove(char *index,const int &value) {
     if (num_of_target  == -1) return; // target不存在
 
     RemovePair(node_p,p,num_of_target); // node_p也完全修改
-    // 并块
-    if (node_p.size < MINSIZE && p != tail) {
-        long q = node_p.next;
-        node node_q = ReadNode(q);
-        if (node_q.size > MINSIZE) {
-            // 从后驱借元素
-            _pair borrow = node_q.data[0];
-            RemovePair(node_q,q,0);
-            InsertPair(node_p,p,borrow,node_p.size);
+
+    if (node_p.size >= MINSIZE) return;
+    if (p == tail && p == 0) return; // 只有一个块，不并
+
+    // 开始借元素or并块
+    if (p == 0) {
+        long q_next = node_p.next;
+        node node_q_next = ReadNode(q_next);
+        if (node_q_next.size > MINSIZE) {
+            BorrowElement(node_q_next, q_next, node_p, p, 0, node_p.size);
             return;
         }
-        else {
-            q = node_p.prev;
-            node_q = ReadNode(q);
-            if (node_q.size > MINSIZE) {
-                // 从前驱借元素
-                _pair borrow = node_q.data[node_q.size - 1];
-                RemovePair(node_q,q,node_q.size - 1);
-                InsertPair(node_p,p,borrow,0);
-                return;
-            }
-            else { // 并块：向前并块 并到前一个 （保持head不变）（第一个节点永远存在）
-                // 先修改前驱数据
-                node_q.ed = node_p.ed;
-                node_q.size = node_q.size + node_p.size;
-                node_q.next = node_p.next;
-                for (int i = 0;i < node_p.size;++i) {
-                    node_q.data[node_q.size + i] = node_p.data[i];
-                }
-                WriteNode(node_q,q);
-
-                // 再修改node_p.next.prev = q
-                if (p == tail) tail = q;
-                else {
-                    file.seekp(node_p.next + 2 * sizeof(_pair) + sizeof(int));
-                    file.write(reinterpret_cast<const char *> (&q),sizeof(long));
-                }
-            }
-        }
+        Merge(node_q_next,q_next,node_p,p);
+        return;
     }
+    if (p == tail) {
+        long q_prev = node_p.prev;
+        node node_q_prev = ReadNode(q_prev);
+        if (node_q_prev.size > MINSIZE) {
+            BorrowElement(node_q_prev,q_prev,node_p,p,node_q_prev.size - 1,0);
+            return;
+        }
+        Merge(node_p,p,node_q_prev,q_prev);
+        return;
+    }
+    long q_next = node_p.next;
+    node node_q_next = ReadNode(q_next);
+    if (node_q_next.size > MINSIZE) {
+        BorrowElement(node_q_next,q_next,node_p,p,0,node_p.size);
+        return;
+    }
+    long q_prev = node_p.prev;
+    node node_q_prev = ReadNode(q_prev);
+    if (node_q_prev.size > MINSIZE) {
+        BorrowElement(node_q_prev,q_prev,node_p,p,node_q_prev.size - 1,0);
+        return;
+    }
+    Merge(node_p,p,node_q_prev,q_prev);
+    return;
 }
 
 std::set<int> BlockList::find(char *index) {

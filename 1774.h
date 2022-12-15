@@ -46,7 +46,7 @@ public:
 };
 
 class BlockList {
-//    friend int main();
+    friend int main();
     std::fstream file; // "other.txt" "file.txt"
     bool flag_start = false;
     long tail = 0;
@@ -122,10 +122,27 @@ public:
     void insert(char *index,const int &value);
 
     /*
+     * 把node_q里的第take_num个元素借到node_p的第insert_num个元素位置
+     * 同时修改node和文件
+     */
+
+    void BorrowElement(node &node_q,const long &q,node &node_p,const long &p,int take_num,int insert_num);
+
+    /*
+     * 并块：把p并到q的后面（q为p的前驱）
+     * 更新tail (if necessary)
+     * 同时修改node和文件
+     */
+
+    void Merge(node &node_p,const long &p,node &node_q,const long &q);
+
+    /*
      * 删除以 [index] 为索引，值为 [value] 的条目。请注意，删除的条目可能不存在
      * 若删完后（--size后）size<MINSIZE，需要并块（==MINSIZE不并）
+     *      具体逻辑：if (p == tail) : 向前驱借元素或并到前驱
+     *              if (p == 0) 向后驱借元素或把后驱并过来 (保持head不变)
+     *              else 向后驱借->向前驱借->并到前驱
      * head 恒等于 0 (裂块向后裂，并块并到前一个)，保持前一个块不变
-     * 并块记得更新tail
      */
 
     void remove(char *index,const int &value);
