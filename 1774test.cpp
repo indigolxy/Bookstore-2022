@@ -24,7 +24,7 @@ int main() {
             std::cin >> index;
             std::set<int> ans = the_list.find(index);
 
-            if (ans.empty()) std::cout << "null" << std::endl;
+            if (ans.empty()) std::cout << n << ' ' << "null" << std::endl;
             else {
                 for (auto i : ans) {
                     std::cout << i << ' ';

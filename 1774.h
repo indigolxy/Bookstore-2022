@@ -11,6 +11,7 @@ constexpr int MaxBits = 64 * 8;
 constexpr int MAXSIZE = 320; // !!1-base!!
 constexpr int MINSIZE = 160; // !!1-base!!
 
+#pragma pack(push,1)
 class _pair {
 public:
     char index[MaxBits] = {'\0'};
@@ -45,8 +46,10 @@ public:
     node(_pair st,_pair ed,int size,long prev,long next) : st(st),ed(ed),size(size),prev(prev),next(next) {}
 };
 
+#pragma pack(pop)
+
 class BlockList {
-    friend int main();
+//    friend int main();
     std::fstream file; // "other.txt" "file.txt"
     bool flag_start = false;
     long tail = 0;

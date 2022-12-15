@@ -55,29 +55,32 @@ void BlockList::WriteNode(const node &obj,const long &pos) {
 long BlockList::FindTheBlock(const _pair &target) {
     long p = 0;
     while (true) {
-        node node_p = ReadNode(p);
-        if (node_p.ed >= target) {
+        file.seekg(p + sizeof(_pair));
+        _pair p_ed;
+        file.read(reinterpret_cast<char *> (&p_ed),sizeof(_pair));
+        if (p_ed >= target) {
             return p;
         }
         else {
             if (p == tail) return -1;
-            p = node_p.next;
+            // p = node_p.next;
+            file.seekg(p + sizeof(_pair) * 2 + sizeof(int) + sizeof(long));
+            file.read(reinterpret_cast<char *> (&p),sizeof(long));
         }
     }
 }
 
 long BlockList::FindTheBlockIndex(const char *index) {
     long p = 0;
-    node node_p;
     while (true) {
-        node_p = ReadNode(p);
-        if (strcmp(index,node_p.ed.index) <= 0) {
-            return p;
-        }
-        else {
-            if (p == tail) return -1;
-            p = node_p.next;
-        }
+        file.seekg(p + sizeof(_pair));
+        char p_ed_index[MaxBits] = {0};
+        file.read(reinterpret_cast<char *> (&p_ed_index),MaxBits);
+        if (strcmp(index,p_ed_index) <= 0) return p;
+        if (p == tail) return -1;
+        // p = node_p.next;
+        file.seekg(p + sizeof(_pair) * 2 + sizeof(int) + sizeof(long));
+        file.read(reinterpret_cast<char *> (&p),sizeof(long));
     }
 }
 
