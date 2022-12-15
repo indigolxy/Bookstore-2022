@@ -41,22 +41,15 @@ BlockList::~BlockList() {
 
 node BlockList::ReadNode() { // 读完读指针走到data有效数据的最后
     node tmp;
-    tmp.st = ReadPair();
-    tmp.ed = ReadPair();
+    file.read(reinterpret_cast<char *> (&tmp.st),sizeof(_pair));
+    file.read(reinterpret_cast<char *> (&tmp.ed),sizeof(_pair));
     file.read(reinterpret_cast<char *> (&tmp.size),sizeof(int));
     file.read(reinterpret_cast<char *> (&tmp.prev),sizeof(long));
     file.read(reinterpret_cast<char *> (&tmp.next),sizeof(long));
 
     for (int i = 0;i < tmp.size;++i) {
-        tmp.data[i] = ReadPair();
+        file.read(reinterpret_cast<char *> (&tmp.data[i]),sizeof(_pair));
     }
-    return tmp;
-}
-
-_pair BlockList::ReadPair() {
-    _pair tmp;
-    file.read(tmp.index,MaxBits);
-    file.read(reinterpret_cast<char *> (&tmp.value),sizeof(int));
     return tmp;
 }
 
@@ -195,6 +188,8 @@ void BlockList::insert(char *index,const int &value) {
 }
 
 void BlockList::remove(char *index,const int &value) {
+    if (!flag_start) return;
+
     const _pair target(index,value);
     long p = FindTheBlock(target);
     if (p == -1) return;
@@ -258,6 +253,7 @@ void BlockList::remove(char *index,const int &value) {
 
 std::set<int> BlockList::find(char *index) {
     std::set<int> ans;
+    if (!flag_start) return ans;
     long p = FindTheBlockIndex(index);
     if (p == -1) return ans;
 

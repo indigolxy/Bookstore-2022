@@ -46,6 +46,7 @@ public:
 };
 
 class BlockList {
+    friend int main();
     std::fstream file; // "other.txt" "file.txt"
     bool flag_start = false;
     long tail = 0;
@@ -61,13 +62,6 @@ public:
      */
 
     node ReadNode();
-
-    /*
-     * 从file现有位置读入一个_pair
-     * 函数执行结束后 读指针走到_pair的最后
-     */
-
-    _pair ReadPair();
 
     /*
      * 向file中写入一个完整的node
@@ -139,6 +133,7 @@ public:
      */
 
     std::set<int> find(char *index);
+
 };
 
 #endif //BOOKSTORE_2022_1774_H

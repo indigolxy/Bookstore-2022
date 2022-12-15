@@ -31,6 +31,8 @@ int main() {
                 std::cout << '\n';
             }
         }
+
+        std::cout << "STATUS: " << bool(the_list.file) << std::endl;
     }
     return 0;
 }
