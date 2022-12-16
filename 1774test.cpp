@@ -7,24 +7,22 @@ int main() {
     BlockList the_list;
     while (n--) {
         std::cin >> command;
+        char index[MaxBits] = {0};
         if (command == "insert") {
-            char index[64 * 8] = {0};
             int value;
             std::cin >> index >> value;
             the_list.insert(index,value);
         }
         else if (command == "delete") {
-            char index[64 * 8] = {0};
             int value;
             std::cin >> index >> value;
             the_list.remove(index,value);
         }
         else if (command == "find") {
-            char index[64 * 8] = {0};
             std::cin >> index;
             std::vector<int> ans = the_list.find(index);
 
-            if (ans.empty()) std::cout << n << ' ' << "null" << std::endl;
+            if (ans.empty()) std::cout << "null" << std::endl;
             else {
                 for (auto i : ans) {
                     std::cout << i << ' ';

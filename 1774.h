@@ -8,9 +8,9 @@
 #include <set>
 #include <vector>
 
-constexpr int MaxBits = 64 * 8;
-constexpr int MAXSIZE = 4; // !!1-base!!
-constexpr int MINSIZE = 2; // !!1-base!!
+constexpr int MaxBits = 66;
+constexpr int MAXSIZE = 640; // !!1-base!!
+constexpr int MINSIZE = 320; // !!1-base!!
 
 #pragma pack(push,1)
 class _pair {
@@ -57,7 +57,7 @@ class BlockList {
 
 public:
 
-    void printAll() {
+    /*void printAll() {
         long p = 0;
         while (p != -1) {
             node nd = ReadNode(p);
@@ -70,7 +70,7 @@ public:
             }
             std::cout << std::endl;
         }
-    }
+    }*/
 
     BlockList();
 
