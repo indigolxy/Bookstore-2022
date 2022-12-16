@@ -6,10 +6,11 @@
 #include <fstream>
 #include <cstring>
 #include <set>
+#include <vector>
 
 constexpr int MaxBits = 64 * 8;
-constexpr int MAXSIZE = 320; // !!1-base!!
-constexpr int MINSIZE = 160; // !!1-base!!
+constexpr int MAXSIZE = 4; // !!1-base!!
+constexpr int MINSIZE = 2; // !!1-base!!
 
 #pragma pack(push,1)
 class _pair {
@@ -55,6 +56,22 @@ class BlockList {
     long tail = 0;
 
 public:
+
+    void printAll() {
+        long p = 0;
+        while (p != -1) {
+            node nd = ReadNode(p);
+            p = nd.next;
+            std::cout << "[" << nd.st.index << "," << nd.st.value << "] ";
+            std::cout << "{" << nd.ed.index << "," << nd.ed.value << "} ";
+
+            for (int i = 0; i < nd.size; ++i) {
+                std::cout << "(" << nd.data[i].index << "," << nd.data[i].value << ") ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
     BlockList();
 
     ~BlockList();
@@ -156,7 +173,7 @@ public:
      * 在整个指令输出结束后输出 \n
      */
 
-    std::set<int> find(char *index);
+    std::vector<int> find(char *index);
 
 };
 

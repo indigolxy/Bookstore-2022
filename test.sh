@@ -1,6 +1,6 @@
 #!/bin/bash
 
-g++ -o a.out main.cpp
+g++ -o main main.cpp
 
 i=0
 while (( $? == 0 ))
@@ -8,9 +8,9 @@ do
   ((i++))
   echo "Case ${i}"
   ./clear.sh
-  python3 makedata.py
+  python3 makedata2.py
   echo "running std."
-  ./a.out <test.txt >2.out
+  ./main <test.txt >2.out
   echo "running test"
   ./test <test.txt >2.ans
   echo "comparing"

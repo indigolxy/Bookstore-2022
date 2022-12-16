@@ -22,7 +22,7 @@ int main() {
         else if (command == "find") {
             char index[64 * 8] = {0};
             std::cin >> index;
-            std::set<int> ans = the_list.find(index);
+            std::vector<int> ans = the_list.find(index);
 
             if (ans.empty()) std::cout << n << ' ' << "null" << std::endl;
             else {
@@ -33,7 +33,7 @@ int main() {
             }
         }
 //        if (n == 479 || n == 480 || n == 481) std::cout << "STATUS: " << n << ' ' << bool(the_list.file) << std::endl;
-
+//        the_list.printAll();
     }
     return 0;
 }

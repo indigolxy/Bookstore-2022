@@ -85,12 +85,19 @@ long BlockList::FindTheBlockIndex(const char *index) {
 }
 
 void BlockList::RemovePair(node &node_p,const long &p,const int &num) {
+    if (num == 0 && num == node_p.size - 1) {
+        _pair empty_pair;
+        node_p.st = empty_pair;
+        node_p.ed = empty_pair;
+        if (p == 0) flag_start = false;
+    }
     if (num == 0) {
         node_p.st = node_p.data[1];
     }
     else if (num == node_p.size - 1) {
         node_p.ed = node_p.data[node_p.size - 2];
     }
+
     --node_p.size;
     for (int i = num;i < node_p.size;++i) {
         node_p.data[i] = node_p.data[i + 1];
@@ -154,6 +161,8 @@ void BlockList::insert(char *index,const int &value) {
         const long q = file.tellp();
         WriteNode(tmp,q);
 
+        long p_next_original = node_p.next;
+
         // 修改p中数据
         node_p.ed = node_p.data[MINSIZE - 1];
         node_p.size = MINSIZE;
@@ -167,7 +176,7 @@ void BlockList::insert(char *index,const int &value) {
         if (p == tail) tail = q;
         else {
             // p->next->prev = q;
-            file.seekp(node_p.next + 2 * sizeof(_pair) + sizeof(int));
+            file.seekp(p_next_original + 2 * sizeof(_pair) + sizeof(int));
             file.write(reinterpret_cast<const char *> (&q), sizeof(long));
         }
     }
@@ -256,8 +265,8 @@ void BlockList::remove(char *index,const int &value) {
     return;
 }
 
-std::set<int> BlockList::find(char *index) {
-    std::set<int> ans;
+std::vector<int> BlockList::find(char *index) {
+    std::vector<int> ans;
     if (!flag_start) return ans;
     long p = FindTheBlockIndex(index);
     if (p == -1) return ans;
@@ -269,7 +278,7 @@ std::set<int> BlockList::find(char *index) {
     for (int i = 0;i < node_p.size;++i) {
         if (strcmp(node_p.data[i].index,index) == 0) { // found it!
             found_index = true;
-            ans.insert(node_p.data[i].value);
+            ans.push_back(node_p.data[i].value);
         }
         else if (found_index) {
             return ans; // 在这个block内找完了
@@ -283,7 +292,7 @@ std::set<int> BlockList::find(char *index) {
         node_p = ReadNode(p);
         for (int i = 0;i < node_p.size;++i) {
             if (strcmp(node_p.data[i].index,index) == 0) {
-                ans.insert(node_p.data[i].value);
+                ans.push_back(node_p.data[i].value);
             }
             else {
                 return ans; // 在这个block内找完了

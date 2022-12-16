@@ -1,7 +1,7 @@
 from random import *
 mode = ["insert","delete","find"]
 
-n = 2000
+n = 10000
 a = open("test.txt","w")
 a.write(str(n))
 a.write("\n")
