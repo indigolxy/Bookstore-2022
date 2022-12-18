@@ -69,124 +69,124 @@ include CMakeFiles/code.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/code.dir/flags.make
 
-CMakeFiles/code.dir/main.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/main.cpp.o: ../main.cpp
-CMakeFiles/code.dir/main.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/code.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/main.cpp.o -MF CMakeFiles/code.dir/main.cpp.o.d -o CMakeFiles/code.dir/main.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/main.cpp
+CMakeFiles/code.dir/bookstore/bookstore.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/bookstore.cpp.o: ../bookstore/bookstore.cpp
+CMakeFiles/code.dir/bookstore/bookstore.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/code.dir/bookstore/bookstore.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/bookstore.cpp.o -MF CMakeFiles/code.dir/bookstore/bookstore.cpp.o.d -o CMakeFiles/code.dir/bookstore/bookstore.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/bookstore.cpp
 
-CMakeFiles/code.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/main.cpp > CMakeFiles/code.dir/main.cpp.i
+CMakeFiles/code.dir/bookstore/bookstore.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/bookstore.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/bookstore.cpp > CMakeFiles/code.dir/bookstore/bookstore.cpp.i
 
-CMakeFiles/code.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/main.cpp -o CMakeFiles/code.dir/main.cpp.s
+CMakeFiles/code.dir/bookstore/bookstore.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/bookstore.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/bookstore.cpp -o CMakeFiles/code.dir/bookstore/bookstore.cpp.s
 
-CMakeFiles/code.dir/UserSystem.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/UserSystem.cpp.o: ../UserSystem.cpp
-CMakeFiles/code.dir/UserSystem.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/UserSystem.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/UserSystem.cpp.o -MF CMakeFiles/code.dir/UserSystem.cpp.o.d -o CMakeFiles/code.dir/UserSystem.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/UserSystem.cpp
+CMakeFiles/code.dir/bookstore/UserSystem.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/UserSystem.cpp.o: ../bookstore/UserSystem.cpp
+CMakeFiles/code.dir/bookstore/UserSystem.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/code.dir/bookstore/UserSystem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/UserSystem.cpp.o -MF CMakeFiles/code.dir/bookstore/UserSystem.cpp.o.d -o CMakeFiles/code.dir/bookstore/UserSystem.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UserSystem.cpp
 
-CMakeFiles/code.dir/UserSystem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/UserSystem.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/UserSystem.cpp > CMakeFiles/code.dir/UserSystem.cpp.i
+CMakeFiles/code.dir/bookstore/UserSystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/UserSystem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UserSystem.cpp > CMakeFiles/code.dir/bookstore/UserSystem.cpp.i
 
-CMakeFiles/code.dir/UserSystem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/UserSystem.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/UserSystem.cpp -o CMakeFiles/code.dir/UserSystem.cpp.s
+CMakeFiles/code.dir/bookstore/UserSystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/UserSystem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UserSystem.cpp -o CMakeFiles/code.dir/bookstore/UserSystem.cpp.s
 
-CMakeFiles/code.dir/BookSystem.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/BookSystem.cpp.o: ../BookSystem.cpp
-CMakeFiles/code.dir/BookSystem.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/code.dir/BookSystem.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/BookSystem.cpp.o -MF CMakeFiles/code.dir/BookSystem.cpp.o.d -o CMakeFiles/code.dir/BookSystem.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/BookSystem.cpp
+CMakeFiles/code.dir/bookstore/BookSystem.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/BookSystem.cpp.o: ../bookstore/BookSystem.cpp
+CMakeFiles/code.dir/bookstore/BookSystem.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/code.dir/bookstore/BookSystem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/BookSystem.cpp.o -MF CMakeFiles/code.dir/bookstore/BookSystem.cpp.o.d -o CMakeFiles/code.dir/bookstore/BookSystem.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/BookSystem.cpp
 
-CMakeFiles/code.dir/BookSystem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/BookSystem.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/BookSystem.cpp > CMakeFiles/code.dir/BookSystem.cpp.i
+CMakeFiles/code.dir/bookstore/BookSystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/BookSystem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/BookSystem.cpp > CMakeFiles/code.dir/bookstore/BookSystem.cpp.i
 
-CMakeFiles/code.dir/BookSystem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/BookSystem.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/BookSystem.cpp -o CMakeFiles/code.dir/BookSystem.cpp.s
+CMakeFiles/code.dir/bookstore/BookSystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/BookSystem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/BookSystem.cpp -o CMakeFiles/code.dir/bookstore/BookSystem.cpp.s
 
-CMakeFiles/code.dir/LogFinance.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/LogFinance.cpp.o: ../LogFinance.cpp
-CMakeFiles/code.dir/LogFinance.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/code.dir/LogFinance.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/LogFinance.cpp.o -MF CMakeFiles/code.dir/LogFinance.cpp.o.d -o CMakeFiles/code.dir/LogFinance.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/LogFinance.cpp
+CMakeFiles/code.dir/bookstore/LogFinance.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/LogFinance.cpp.o: ../bookstore/LogFinance.cpp
+CMakeFiles/code.dir/bookstore/LogFinance.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/code.dir/bookstore/LogFinance.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/LogFinance.cpp.o -MF CMakeFiles/code.dir/bookstore/LogFinance.cpp.o.d -o CMakeFiles/code.dir/bookstore/LogFinance.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogFinance.cpp
 
-CMakeFiles/code.dir/LogFinance.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/LogFinance.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/LogFinance.cpp > CMakeFiles/code.dir/LogFinance.cpp.i
+CMakeFiles/code.dir/bookstore/LogFinance.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/LogFinance.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogFinance.cpp > CMakeFiles/code.dir/bookstore/LogFinance.cpp.i
 
-CMakeFiles/code.dir/LogFinance.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/LogFinance.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/LogFinance.cpp -o CMakeFiles/code.dir/LogFinance.cpp.s
+CMakeFiles/code.dir/bookstore/LogFinance.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/LogFinance.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogFinance.cpp -o CMakeFiles/code.dir/bookstore/LogFinance.cpp.s
 
-CMakeFiles/code.dir/LogUser.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/LogUser.cpp.o: ../LogUser.cpp
-CMakeFiles/code.dir/LogUser.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/code.dir/LogUser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/LogUser.cpp.o -MF CMakeFiles/code.dir/LogUser.cpp.o.d -o CMakeFiles/code.dir/LogUser.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/LogUser.cpp
+CMakeFiles/code.dir/bookstore/LogUser.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/LogUser.cpp.o: ../bookstore/LogUser.cpp
+CMakeFiles/code.dir/bookstore/LogUser.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/code.dir/bookstore/LogUser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/LogUser.cpp.o -MF CMakeFiles/code.dir/bookstore/LogUser.cpp.o.d -o CMakeFiles/code.dir/bookstore/LogUser.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogUser.cpp
 
-CMakeFiles/code.dir/LogUser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/LogUser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/LogUser.cpp > CMakeFiles/code.dir/LogUser.cpp.i
+CMakeFiles/code.dir/bookstore/LogUser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/LogUser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogUser.cpp > CMakeFiles/code.dir/bookstore/LogUser.cpp.i
 
-CMakeFiles/code.dir/LogUser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/LogUser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/LogUser.cpp -o CMakeFiles/code.dir/LogUser.cpp.s
+CMakeFiles/code.dir/bookstore/LogUser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/LogUser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogUser.cpp -o CMakeFiles/code.dir/bookstore/LogUser.cpp.s
 
-CMakeFiles/code.dir/Command.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/Command.cpp.o: ../Command.cpp
-CMakeFiles/code.dir/Command.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/code.dir/Command.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/Command.cpp.o -MF CMakeFiles/code.dir/Command.cpp.o.d -o CMakeFiles/code.dir/Command.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/Command.cpp
+CMakeFiles/code.dir/bookstore/Command.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/Command.cpp.o: ../bookstore/Command.cpp
+CMakeFiles/code.dir/bookstore/Command.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/code.dir/bookstore/Command.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/Command.cpp.o -MF CMakeFiles/code.dir/bookstore/Command.cpp.o.d -o CMakeFiles/code.dir/bookstore/Command.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/Command.cpp
 
-CMakeFiles/code.dir/Command.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/Command.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/Command.cpp > CMakeFiles/code.dir/Command.cpp.i
+CMakeFiles/code.dir/bookstore/Command.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/Command.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/Command.cpp > CMakeFiles/code.dir/bookstore/Command.cpp.i
 
-CMakeFiles/code.dir/Command.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/Command.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/Command.cpp -o CMakeFiles/code.dir/Command.cpp.s
+CMakeFiles/code.dir/bookstore/Command.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/Command.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/Command.cpp -o CMakeFiles/code.dir/bookstore/Command.cpp.s
 
-CMakeFiles/code.dir/UnrolledLinkList.cpp.o: CMakeFiles/code.dir/flags.make
-CMakeFiles/code.dir/UnrolledLinkList.cpp.o: ../UnrolledLinkList.cpp
-CMakeFiles/code.dir/UnrolledLinkList.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/code.dir/UnrolledLinkList.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/UnrolledLinkList.cpp.o -MF CMakeFiles/code.dir/UnrolledLinkList.cpp.o.d -o CMakeFiles/code.dir/UnrolledLinkList.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/UnrolledLinkList.cpp
+CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o: CMakeFiles/code.dir/flags.make
+CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o: ../bookstore/UnrolledLinkList.cpp
+CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o: CMakeFiles/code.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o -MF CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o.d -o CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o -c /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UnrolledLinkList.cpp
 
-CMakeFiles/code.dir/UnrolledLinkList.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/UnrolledLinkList.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/UnrolledLinkList.cpp > CMakeFiles/code.dir/UnrolledLinkList.cpp.i
+CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UnrolledLinkList.cpp > CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.i
 
-CMakeFiles/code.dir/UnrolledLinkList.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/UnrolledLinkList.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/UnrolledLinkList.cpp -o CMakeFiles/code.dir/UnrolledLinkList.cpp.s
+CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UnrolledLinkList.cpp -o CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.s
 
 # Object files for target code
 code_OBJECTS = \
-"CMakeFiles/code.dir/main.cpp.o" \
-"CMakeFiles/code.dir/UserSystem.cpp.o" \
-"CMakeFiles/code.dir/BookSystem.cpp.o" \
-"CMakeFiles/code.dir/LogFinance.cpp.o" \
-"CMakeFiles/code.dir/LogUser.cpp.o" \
-"CMakeFiles/code.dir/Command.cpp.o" \
-"CMakeFiles/code.dir/UnrolledLinkList.cpp.o"
+"CMakeFiles/code.dir/bookstore/bookstore.cpp.o" \
+"CMakeFiles/code.dir/bookstore/UserSystem.cpp.o" \
+"CMakeFiles/code.dir/bookstore/BookSystem.cpp.o" \
+"CMakeFiles/code.dir/bookstore/LogFinance.cpp.o" \
+"CMakeFiles/code.dir/bookstore/LogUser.cpp.o" \
+"CMakeFiles/code.dir/bookstore/Command.cpp.o" \
+"CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o"
 
 # External object files for target code
 code_EXTERNAL_OBJECTS =
 
-code: CMakeFiles/code.dir/main.cpp.o
-code: CMakeFiles/code.dir/UserSystem.cpp.o
-code: CMakeFiles/code.dir/BookSystem.cpp.o
-code: CMakeFiles/code.dir/LogFinance.cpp.o
-code: CMakeFiles/code.dir/LogUser.cpp.o
-code: CMakeFiles/code.dir/Command.cpp.o
-code: CMakeFiles/code.dir/UnrolledLinkList.cpp.o
+code: CMakeFiles/code.dir/bookstore/bookstore.cpp.o
+code: CMakeFiles/code.dir/bookstore/UserSystem.cpp.o
+code: CMakeFiles/code.dir/bookstore/BookSystem.cpp.o
+code: CMakeFiles/code.dir/bookstore/LogFinance.cpp.o
+code: CMakeFiles/code.dir/bookstore/LogUser.cpp.o
+code: CMakeFiles/code.dir/bookstore/Command.cpp.o
+code: CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o
 code: CMakeFiles/code.dir/build.make
 code: CMakeFiles/code.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/c++/CLionProjects/Bookstore-2022/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable code"

@@ -9,8 +9,8 @@
 #include <vector>
 
 constexpr int MaxBits = 66;
-constexpr int MAXSIZE = 640; // !!1-base!!
-constexpr int MINSIZE = 320; // !!1-base!!
+constexpr int MAXSIZE = 1000; // !!1-base!!
+constexpr int MINSIZE = 500; // !!1-base!!
 
 #pragma pack(push,1)
 class _pair {

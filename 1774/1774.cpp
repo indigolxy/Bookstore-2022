@@ -147,7 +147,7 @@ void BlockList::insert(char *index,const int &value) {
     while (node_p.data[i] < target && i < node_p.size) {
         ++i;
     }
-    if (node_p.data[i] ==  target) return; // 若重复，不插入
+    if (node_p.data[i] == target) return; // 若重复，不插入
     InsertPair(node_p,p,target,i);
 
     // 再裂开:向后增加 (考虑更新tail）

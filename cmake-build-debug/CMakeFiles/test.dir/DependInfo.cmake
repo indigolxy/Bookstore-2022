@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/1774.cpp" "CMakeFiles/test.dir/1774.cpp.o" "gcc" "CMakeFiles/test.dir/1774.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/1774test.cpp" "CMakeFiles/test.dir/1774test.cpp.o" "gcc" "CMakeFiles/test.dir/1774test.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/1774/1774.cpp" "CMakeFiles/test.dir/1774/1774.cpp.o" "gcc" "CMakeFiles/test.dir/1774/1774.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/1774/1774test.cpp" "CMakeFiles/test.dir/1774/1774test.cpp.o" "gcc" "CMakeFiles/test.dir/1774/1774test.cpp.o.d"
   )
 
 # Targets to which this target links.

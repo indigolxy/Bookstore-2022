@@ -5,49 +5,43 @@
 #ifndef BOOKSTORE_2022_COMMAND_H
 #define BOOKSTORE_2022_COMMAND_H
 
+#include <exception>
+#include <string>
+#include <utility>
+#include <iostream>
+#include <vector>
+#include "BookSystem.h"
+#include "UserSystem.h"
+#include "error.h"
+
 // 处理字符工具
 int NextInt();
 char* NextString();
 
-// 判断指令类型并执行对应函数（若异常，抛出并返回）
-// 同时，该函数将每条command内容与操作者记录在LogUser中
-// 只处理一行
-// main函数中getline循环
-void processLine(const char * &input);
+/*
+ * 切割一整行的string，返回string类型
+ */
+std::vector<std::string> SplitString(std::string command);
 
-// 基础指令
-void CommandQuit();
+/*
+ * 判断指令类型并执行对应函数，输入不合法则抛出异常
+ * 只处理一行
+ * main函数中getline循环
+ * 若exit或quit，返回值为0，否则返回1
+ */
+int processLine(std::string command, UserSystem &user_system);
 
-void CommandExit();
+/*
+ * 判断是否是合法的user_id或passwd
+ * 若不合法，抛出异常
+ */
+void IsValidUserid(const std::string &x);
 
-//账户系统指令
-void CommandSu(const char * &user_id,char *passwd = nullptr);
-
-void CommandLogout();
-
-void CommandRegister(const char * &user_id,const char * &passwd,const char * &username);
-
-void CommandPasswd(const char * &user_id,const char * &passwd,char *current_passwd = nullptr);
-
-void CommandUseradd(const char * &user_id,const char * &passwd,const int &privilege,const char * &username);
-
-void CommandDelete(const char * &user_id);
-
-// select:涉及图书和账户系统
-void CommandSelect(const char * &isbn);
-
-// 图书系统指令
-void CommandShow( ) // todo
-
-void CommandBuy(const char * &user_id,const int &quantity);
-
-void CommandModify( ) // todo
-
-void CommandImport(const int &quantity,const int &total_cost);
-
-// 日志系统指令
-void CommandShow(int count = -1); // 缺省时输出全部
-
-void log();
+/*
+ * 判断是否为合法的privilege
+ * 若不合法，抛出异常
+ * 若合法，返回int
+ */
+int IsValidPrivilege(const std::string &x);
 
 #endif //BOOKSTORE_2022_COMMAND_H

@@ -8,13 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/BookSystem.cpp" "CMakeFiles/code.dir/BookSystem.cpp.o" "gcc" "CMakeFiles/code.dir/BookSystem.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/Command.cpp" "CMakeFiles/code.dir/Command.cpp.o" "gcc" "CMakeFiles/code.dir/Command.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/LogFinance.cpp" "CMakeFiles/code.dir/LogFinance.cpp.o" "gcc" "CMakeFiles/code.dir/LogFinance.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/LogUser.cpp" "CMakeFiles/code.dir/LogUser.cpp.o" "gcc" "CMakeFiles/code.dir/LogUser.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/UnrolledLinkList.cpp" "CMakeFiles/code.dir/UnrolledLinkList.cpp.o" "gcc" "CMakeFiles/code.dir/UnrolledLinkList.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/UserSystem.cpp" "CMakeFiles/code.dir/UserSystem.cpp.o" "gcc" "CMakeFiles/code.dir/UserSystem.cpp.o.d"
-  "/mnt/d/c++/CLionProjects/Bookstore-2022/main.cpp" "CMakeFiles/code.dir/main.cpp.o" "gcc" "CMakeFiles/code.dir/main.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/BookSystem.cpp" "CMakeFiles/code.dir/bookstore/BookSystem.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/BookSystem.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/Command.cpp" "CMakeFiles/code.dir/bookstore/Command.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/Command.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogFinance.cpp" "CMakeFiles/code.dir/bookstore/LogFinance.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/LogFinance.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/LogUser.cpp" "CMakeFiles/code.dir/bookstore/LogUser.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/LogUser.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UnrolledLinkList.cpp" "CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/UserSystem.cpp" "CMakeFiles/code.dir/bookstore/UserSystem.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/UserSystem.cpp.o.d"
+  "/mnt/d/c++/CLionProjects/Bookstore-2022/bookstore/bookstore.cpp" "CMakeFiles/code.dir/bookstore/bookstore.cpp.o" "gcc" "CMakeFiles/code.dir/bookstore/bookstore.cpp.o.d"
   )
 
 # Targets to which this target links.

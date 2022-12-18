@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named code
+
+# Build rule for target.
+code: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 code
+.PHONY : code
+
+# fast build rule for target.
+code/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
+.PHONY : code/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -129,53 +142,221 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
-1774.o: 1774.cpp.o
-.PHONY : 1774.o
+1774/1774.o: 1774/1774.cpp.o
+.PHONY : 1774/1774.o
 
 # target to build an object file
-1774.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.o
-.PHONY : 1774.cpp.o
+1774/1774.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774.cpp.o
+.PHONY : 1774/1774.cpp.o
 
-1774.i: 1774.cpp.i
-.PHONY : 1774.i
+1774/1774.i: 1774/1774.cpp.i
+.PHONY : 1774/1774.i
 
 # target to preprocess a source file
-1774.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.i
-.PHONY : 1774.cpp.i
+1774/1774.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774.cpp.i
+.PHONY : 1774/1774.cpp.i
 
-1774.s: 1774.cpp.s
-.PHONY : 1774.s
+1774/1774.s: 1774/1774.cpp.s
+.PHONY : 1774/1774.s
 
 # target to generate assembly for a file
-1774.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774.cpp.s
-.PHONY : 1774.cpp.s
+1774/1774.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774.cpp.s
+.PHONY : 1774/1774.cpp.s
 
-1774test.o: 1774test.cpp.o
-.PHONY : 1774test.o
+1774/1774test.o: 1774/1774test.cpp.o
+.PHONY : 1774/1774test.o
 
 # target to build an object file
-1774test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.o
-.PHONY : 1774test.cpp.o
+1774/1774test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774test.cpp.o
+.PHONY : 1774/1774test.cpp.o
 
-1774test.i: 1774test.cpp.i
-.PHONY : 1774test.i
+1774/1774test.i: 1774/1774test.cpp.i
+.PHONY : 1774/1774test.i
 
 # target to preprocess a source file
-1774test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.i
-.PHONY : 1774test.cpp.i
+1774/1774test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774test.cpp.i
+.PHONY : 1774/1774test.cpp.i
 
-1774test.s: 1774test.cpp.s
-.PHONY : 1774test.s
+1774/1774test.s: 1774/1774test.cpp.s
+.PHONY : 1774/1774test.s
 
 # target to generate assembly for a file
-1774test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774test.cpp.s
-.PHONY : 1774test.cpp.s
+1774/1774test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/1774/1774test.cpp.s
+.PHONY : 1774/1774test.cpp.s
+
+bookstore/BookSystem.o: bookstore/BookSystem.cpp.o
+.PHONY : bookstore/BookSystem.o
+
+# target to build an object file
+bookstore/BookSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/BookSystem.cpp.o
+.PHONY : bookstore/BookSystem.cpp.o
+
+bookstore/BookSystem.i: bookstore/BookSystem.cpp.i
+.PHONY : bookstore/BookSystem.i
+
+# target to preprocess a source file
+bookstore/BookSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/BookSystem.cpp.i
+.PHONY : bookstore/BookSystem.cpp.i
+
+bookstore/BookSystem.s: bookstore/BookSystem.cpp.s
+.PHONY : bookstore/BookSystem.s
+
+# target to generate assembly for a file
+bookstore/BookSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/BookSystem.cpp.s
+.PHONY : bookstore/BookSystem.cpp.s
+
+bookstore/Command.o: bookstore/Command.cpp.o
+.PHONY : bookstore/Command.o
+
+# target to build an object file
+bookstore/Command.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/Command.cpp.o
+.PHONY : bookstore/Command.cpp.o
+
+bookstore/Command.i: bookstore/Command.cpp.i
+.PHONY : bookstore/Command.i
+
+# target to preprocess a source file
+bookstore/Command.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/Command.cpp.i
+.PHONY : bookstore/Command.cpp.i
+
+bookstore/Command.s: bookstore/Command.cpp.s
+.PHONY : bookstore/Command.s
+
+# target to generate assembly for a file
+bookstore/Command.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/Command.cpp.s
+.PHONY : bookstore/Command.cpp.s
+
+bookstore/LogFinance.o: bookstore/LogFinance.cpp.o
+.PHONY : bookstore/LogFinance.o
+
+# target to build an object file
+bookstore/LogFinance.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogFinance.cpp.o
+.PHONY : bookstore/LogFinance.cpp.o
+
+bookstore/LogFinance.i: bookstore/LogFinance.cpp.i
+.PHONY : bookstore/LogFinance.i
+
+# target to preprocess a source file
+bookstore/LogFinance.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogFinance.cpp.i
+.PHONY : bookstore/LogFinance.cpp.i
+
+bookstore/LogFinance.s: bookstore/LogFinance.cpp.s
+.PHONY : bookstore/LogFinance.s
+
+# target to generate assembly for a file
+bookstore/LogFinance.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogFinance.cpp.s
+.PHONY : bookstore/LogFinance.cpp.s
+
+bookstore/LogUser.o: bookstore/LogUser.cpp.o
+.PHONY : bookstore/LogUser.o
+
+# target to build an object file
+bookstore/LogUser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogUser.cpp.o
+.PHONY : bookstore/LogUser.cpp.o
+
+bookstore/LogUser.i: bookstore/LogUser.cpp.i
+.PHONY : bookstore/LogUser.i
+
+# target to preprocess a source file
+bookstore/LogUser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogUser.cpp.i
+.PHONY : bookstore/LogUser.cpp.i
+
+bookstore/LogUser.s: bookstore/LogUser.cpp.s
+.PHONY : bookstore/LogUser.s
+
+# target to generate assembly for a file
+bookstore/LogUser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/LogUser.cpp.s
+.PHONY : bookstore/LogUser.cpp.s
+
+bookstore/UnrolledLinkList.o: bookstore/UnrolledLinkList.cpp.o
+.PHONY : bookstore/UnrolledLinkList.o
+
+# target to build an object file
+bookstore/UnrolledLinkList.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o
+.PHONY : bookstore/UnrolledLinkList.cpp.o
+
+bookstore/UnrolledLinkList.i: bookstore/UnrolledLinkList.cpp.i
+.PHONY : bookstore/UnrolledLinkList.i
+
+# target to preprocess a source file
+bookstore/UnrolledLinkList.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.i
+.PHONY : bookstore/UnrolledLinkList.cpp.i
+
+bookstore/UnrolledLinkList.s: bookstore/UnrolledLinkList.cpp.s
+.PHONY : bookstore/UnrolledLinkList.s
+
+# target to generate assembly for a file
+bookstore/UnrolledLinkList.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.s
+.PHONY : bookstore/UnrolledLinkList.cpp.s
+
+bookstore/UserSystem.o: bookstore/UserSystem.cpp.o
+.PHONY : bookstore/UserSystem.o
+
+# target to build an object file
+bookstore/UserSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UserSystem.cpp.o
+.PHONY : bookstore/UserSystem.cpp.o
+
+bookstore/UserSystem.i: bookstore/UserSystem.cpp.i
+.PHONY : bookstore/UserSystem.i
+
+# target to preprocess a source file
+bookstore/UserSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UserSystem.cpp.i
+.PHONY : bookstore/UserSystem.cpp.i
+
+bookstore/UserSystem.s: bookstore/UserSystem.cpp.s
+.PHONY : bookstore/UserSystem.s
+
+# target to generate assembly for a file
+bookstore/UserSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/UserSystem.cpp.s
+.PHONY : bookstore/UserSystem.cpp.s
+
+bookstore/bookstore.o: bookstore/bookstore.cpp.o
+.PHONY : bookstore/bookstore.o
+
+# target to build an object file
+bookstore/bookstore.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/bookstore.cpp.o
+.PHONY : bookstore/bookstore.cpp.o
+
+bookstore/bookstore.i: bookstore/bookstore.cpp.i
+.PHONY : bookstore/bookstore.i
+
+# target to preprocess a source file
+bookstore/bookstore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/bookstore.cpp.i
+.PHONY : bookstore/bookstore.cpp.i
+
+bookstore/bookstore.s: bookstore/bookstore.cpp.s
+.PHONY : bookstore/bookstore.s
+
+# target to generate assembly for a file
+bookstore/bookstore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/bookstore/bookstore.cpp.s
+.PHONY : bookstore/bookstore.cpp.s
 
 # Help Target
 help:
@@ -185,13 +366,35 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... code"
 	@echo "... test"
-	@echo "... 1774.o"
-	@echo "... 1774.i"
-	@echo "... 1774.s"
-	@echo "... 1774test.o"
-	@echo "... 1774test.i"
-	@echo "... 1774test.s"
+	@echo "... 1774/1774.o"
+	@echo "... 1774/1774.i"
+	@echo "... 1774/1774.s"
+	@echo "... 1774/1774test.o"
+	@echo "... 1774/1774test.i"
+	@echo "... 1774/1774test.s"
+	@echo "... bookstore/BookSystem.o"
+	@echo "... bookstore/BookSystem.i"
+	@echo "... bookstore/BookSystem.s"
+	@echo "... bookstore/Command.o"
+	@echo "... bookstore/Command.i"
+	@echo "... bookstore/Command.s"
+	@echo "... bookstore/LogFinance.o"
+	@echo "... bookstore/LogFinance.i"
+	@echo "... bookstore/LogFinance.s"
+	@echo "... bookstore/LogUser.o"
+	@echo "... bookstore/LogUser.i"
+	@echo "... bookstore/LogUser.s"
+	@echo "... bookstore/UnrolledLinkList.o"
+	@echo "... bookstore/UnrolledLinkList.i"
+	@echo "... bookstore/UnrolledLinkList.s"
+	@echo "... bookstore/UserSystem.o"
+	@echo "... bookstore/UserSystem.i"
+	@echo "... bookstore/UserSystem.s"
+	@echo "... bookstore/bookstore.o"
+	@echo "... bookstore/bookstore.i"
+	@echo "... bookstore/bookstore.s"
 .PHONY : help
 
 

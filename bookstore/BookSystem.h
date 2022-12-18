@@ -6,10 +6,20 @@
 #define BOOKSTORE_2022_BOOKSYSTEM_H
 
 #include <cstring>
+#include "UnrolledLinkList.h"
+#include "error.h"
+
+//constexpr int
 
 class Book;
 class BookSystem {
-    // todo:4个块状链表的变量存储isbn_index，name_index，author_index，keyword_index
+private:
+    BlockList book_isbn_ull;
+    BlockList book_name_ull;
+    BlockList book_author_ull;
+    BlockList book_keyword_ull;
+    std::fstream file;
+
 public:
     void ShowAll();
     void ShowIsbn(const char * &isbn);
@@ -33,7 +43,7 @@ class Book {
     char book_name[65]; // 除不可见字符和英文双引号以外 ASCII 字符
     char author[65]; // 除不可见字符和英文双引号以外 ASCII 字符
     int keyword_num;
-    char keyword[40][65]; // 按输入时顺序存keyword // 除不可见字符和英文双引号以外 ASCII 字符
+    char keyword[20][65]; // 按输入时顺序存keyword // 除不可见字符和英文双引号以外 ASCII 字符
     int quantity; // 库存数
     double price;
     double total_cost;

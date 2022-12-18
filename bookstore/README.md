@@ -6,6 +6,7 @@
 4. 维护书店日志（交易信息与操作记录）
 ## 主体逻辑
 1. Command文件统一读入指令并处理并分配给对应的类执行
+   同时解决不合法输入并抛出异常
 1. UserSystem类维护账户系统，包括维护登录栈，以及所有已注册账户信息（内嵌的User类维护单个账户信息）（实现select）
 2. BookSystem类维护图书系统，内嵌Book类维护每本书的信息。实现检索、修改、购买等功能
 3. LogFinance文件维护交易信息日志，记录每一笔交易的收入支出
@@ -33,4 +34,4 @@
 ## 其他补充说明
 1. show命令的实现：ULL定义4个变量，分别存isbn,name,author,keyword的index
 2. ULL中数据为pair<string,int>按string查找，得到对应的int后到文件对应位置修改或获取book/user的信息
-2. 每本书、每个user有一个编号index(int)，按先后顺序表示该组数据(book or user)存在对应文件的第几行
+2. 每本书、每个user有一个编号index(int)，按表示该组数据(book or user)存在对应文件的什么位置(long)
