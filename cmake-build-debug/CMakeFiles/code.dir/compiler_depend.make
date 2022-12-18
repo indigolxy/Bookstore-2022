@@ -198,7 +198,8 @@ CMakeFiles/code.dir/bookstore/BookSystem.cpp.o: ../bookstore/BookSystem.cpp \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc
+  /usr/include/c++/11/bits/vector.tcc \
+  ../bookstore/error.h
 
 CMakeFiles/code.dir/bookstore/Command.cpp.o: ../bookstore/Command.cpp \
   /usr/include/stdc-predef.h \
@@ -401,6 +402,7 @@ CMakeFiles/code.dir/bookstore/Command.cpp.o: ../bookstore/Command.cpp \
   /usr/include/c++/11/bits/stl_set.h \
   /usr/include/c++/11/bits/stl_multiset.h \
   /usr/include/c++/11/bits/erase_if.h \
+  ../bookstore/error.h \
   ../bookstore/UserSystem.h \
   /usr/include/c++/11/unordered_map \
   /usr/include/c++/11/bits/hashtable.h \
@@ -826,7 +828,8 @@ CMakeFiles/code.dir/bookstore/UserSystem.cpp.o: ../bookstore/UserSystem.cpp \
   /usr/include/c++/11/set \
   /usr/include/c++/11/bits/stl_tree.h \
   /usr/include/c++/11/bits/stl_set.h \
-  /usr/include/c++/11/bits/stl_multiset.h
+  /usr/include/c++/11/bits/stl_multiset.h \
+  ../bookstore/error.h
 
 CMakeFiles/code.dir/bookstore/bookstore.cpp.o: ../bookstore/bookstore.cpp \
   /usr/include/stdc-predef.h \
@@ -1028,6 +1031,7 @@ CMakeFiles/code.dir/bookstore/bookstore.cpp.o: ../bookstore/bookstore.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
+  ../bookstore/error.h \
   ../bookstore/UserSystem.h \
   /usr/include/c++/11/unordered_map \
   /usr/include/c++/11/bits/hashtable.h \
@@ -1148,6 +1152,8 @@ CMakeFiles/code.dir/bookstore/bookstore.cpp.o: ../bookstore/bookstore.cpp \
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+../bookstore/error.h:
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 

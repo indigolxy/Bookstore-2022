@@ -32,6 +32,12 @@ std::vector<std::string> SplitString(std::string command);
 int processLine(std::string command, UserSystem &user_system);
 
 /*
+ * 将传入的的char*（数组）赋值为y
+ * 传入前char数组已初始化{0}
+ */
+void StringToChar(char *x, const std::string &y);
+
+/*
  * 判断是否是合法的user_id或passwd
  * 若不合法，抛出异常
  */

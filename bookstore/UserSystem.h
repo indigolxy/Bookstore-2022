@@ -17,9 +17,9 @@ class User {
     friend class UserSystem;
     friend class LogInUser;
 
-    char user_id[UserMaxSize]; // 数字，字母，下划线
-    char passwd[UserMaxSize]; // 数字，字母，下划线
-    char user_name[UserMaxSize]; // 除不可见字符以外 ASCII 字符
+    char user_id[UserMaxSize] = {0}; // 数字，字母，下划线
+    char passwd[UserMaxSize] = {0}; // 数字，字母，下划线
+    char user_name[UserMaxSize] = {0}; // 除不可见字符以外 ASCII 字符
     int privilege = 0;
 
 public:
@@ -29,20 +29,23 @@ public:
 
 class LogInUser {
     friend class UserSystem;
-    User user;
+    char user_id[UserMaxSize] = {0};
+    int privilege;
     int selected_book_index;
 public:
-    explicit LogInUser() : selected_book_index(-1) {}
-    explicit LogInUser(const User &user,const int &index) : user(user),selected_book_index(index) {}
+    explicit LogInUser() : privilege(-1), selected_book_index(-1) {}
+    explicit LogInUser(const User &user,const int &index) : privilege(user.privilege), selected_book_index(index) {
+        strcpy(user_id,user.user_id);
+    }
 };
 
 class UserSystem {
 private:
     std::vector<LogInUser> logged_users; //维护登录栈
-    std::unordered_map<const char *,int> log_in_cnt;
+    std::unordered_map<std::string,int> log_in_cnt;
     // <user_id,times>记录一个用户在登录栈中的登录次数，便于delete操作和判断用户是否登录
     // 每次adduser或register都设置为0
-    User current_user;
+    int current_user_privilege;
     BlockList user_ull; // ("user_other_file","user_main_file") // 块状链表存储已注册用户 user_id-index
     std::fstream file;
 
@@ -69,6 +72,7 @@ public:
 
     // * 在user.main文件中添加新user，更新log_in_cnt[user_id] = 0,在user.ull中添加新索引
     void UserAdd(const char *user_id, const char *passwd, const int &privilege, const char *user_name);
+
 
     // * 只在文件中修改密码
     void Passwd(const char *user_id, const char *new_passwd,const char * current_passwd = nullptr);

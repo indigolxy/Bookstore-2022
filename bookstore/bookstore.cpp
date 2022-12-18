@@ -9,14 +9,14 @@ int main () {
 //    BookSystem book_system;
     UserSystem user_system;
 
-    try {
-        std::string commandline;
-        while (std::cin >> commandline) {
+    std::string commandline;
+    while (std::getline(std::cin,commandline)) {
+        try {
             if (processLine(commandline,user_system) == 0) break;
         }
-    }
-    catch (Exception) {
-        std::cout << "Invalid\n";
+        catch (Exception &x) {
+            std::cout << "Invalid\n" << x.getMessage() << std::endl;
+        }
     }
 
     return 0;

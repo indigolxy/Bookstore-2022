@@ -15,6 +15,7 @@ public:
     Exception() = default;
     explicit Exception(std::string _message) : message(std::move(_message)) {}
     const char *what() const noexcept override {return "Invalid.\n";}
+    std::string getMessage() {return message;}
 };
 
 #endif //BOOKSTORE_2022_ERROR_H
