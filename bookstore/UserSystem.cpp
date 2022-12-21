@@ -1,5 +1,6 @@
 
 #include "UserSystem.h"
+#include "BookSystem.h"
 
 User::User(const char *_user_id,const char *_passwd,const char *_user_name,int privilege) : privilege(privilege) {
     strcpy(user_id,_user_id);
@@ -13,6 +14,10 @@ UserSystem::UserSystem() : user_ull("user_other.ull","user_main.ull"),current_us
     file.close();
     file.clear();
     file.open("user.main",std::fstream::in | std::fstream::out | std::fstream::binary);
+}
+
+UserSystem::~UserSystem() {
+    file.close();
 }
 
 int UserSystem::FindTheUser(const char *user_id) {
@@ -44,7 +49,8 @@ void UserSystem::Logout() {
 
     --log_in_cnt[std::string(logged_users.back().user_id)];
     logged_users.pop_back();
-    current_user_privilege = logged_users.back().privilege;
+    if (logged_users.empty()) current_user_privilege = 0;
+    else current_user_privilege = logged_users.back().privilege;
 }
 
 void UserSystem::PureAddUser(const char *user_id,const char *passwd,const char *user_name,int privilege) noexcept {
@@ -86,6 +92,12 @@ void UserSystem::Delete(const char *user_id) {
     user_ull.remove(user_id,index);
 }
 
-void UserSystem::Select(const char *isbn) {
-    // todo
+void UserSystem::Select(const char *isbn, BookSystem &book_system) {
+    if (current_user_privilege < 3) throw Exception("under privilege");
+    std::vector<int> ans = book_system.book_isbn_ull.find(isbn);
+    if (ans.empty()) {
+        logged_users.back().selected_book_index = book_system.WriteNewBook(isbn);
+        return;
+    }
+    logged_users.back().selected_book_index = ans.front();
 }

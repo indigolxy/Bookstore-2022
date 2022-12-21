@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/test.dir/1774/1774.cpp.o CMakeFiles/test.dir/1774/1774test.cpp.o -o test 

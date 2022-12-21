@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/code.dir/bookstore/bookstore.cpp.o CMakeFiles/code.dir/bookstore/UserSystem.cpp.o CMakeFiles/code.dir/bookstore/BookSystem.cpp.o CMakeFiles/code.dir/bookstore/LogFinance.cpp.o CMakeFiles/code.dir/bookstore/LogUser.cpp.o CMakeFiles/code.dir/bookstore/Command.cpp.o CMakeFiles/code.dir/bookstore/UnrolledLinkList.cpp.o -o code 

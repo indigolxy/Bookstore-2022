@@ -14,10 +14,6 @@
 #include "UserSystem.h"
 #include "error.h"
 
-// 处理字符工具
-int NextInt();
-char* NextString();
-
 /*
  * 切割一整行的string，返回string类型
  */
@@ -29,7 +25,7 @@ std::vector<std::string> SplitString(std::string command);
  * main函数中getline循环
  * 若exit或quit，返回值为0，否则返回1
  */
-int processLine(std::string command, UserSystem &user_system);
+int processLine(std::string command, UserSystem &user_system, BookSystem &book_system);
 
 /*
  * 将传入的的char*（数组）赋值为y
@@ -49,5 +45,20 @@ void IsValidUserid(const std::string &x);
  * 若合法，返回int
  */
 int IsValidPrivilege(const std::string &x);
+
+/*
+ * 结合substring与StringToChar的功能（调用前char *x数组应被初始化为{0}
+ * chunk格式形如-ISBN=aabbxx
+ * 返回"aabbxx"（向char*中赋值）
+ * 若为-ISBN=，抛出异常empty info
+ */
+void GetIsbn(char *x, const std::string &chunk);
+
+/*
+ * chunk格式形如-name="abcd";-keyword="aabbdjj";-author="sdfiwe"
+ * 均不能出现“”，keyword中不能出现|（一起判断，抛出异常）
+ * 若=号后为空，抛出异常
+ */
+void GetNameAuthorKeyword(char *x, const std::string &chunk);
 
 #endif //BOOKSTORE_2022_COMMAND_H

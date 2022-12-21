@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.15)
 project(Bookstore-2022)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(code bookstore/bookstore.cpp
         bookstore/UserSystem.cpp
         bookstore/BookSystem.cpp
-        bookstore/LogFinance.cpp
-        bookstore/LogUser.cpp
         bookstore/Command.cpp
         bookstore/UnrolledLinkList.cpp
         )

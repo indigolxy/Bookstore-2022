@@ -1,4 +1,4 @@
-./cmake-build-debug
+cmake-build-debug
 1.ans
 1.out
 2.ans
@@ -9,3 +9,5 @@ clear.sh
 test.sh
 file.txt
 other.txt
+./testcases
+test.0

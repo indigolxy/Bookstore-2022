@@ -13,6 +13,8 @@
 
 constexpr int UserMaxSize = 35;
 
+class BookSystem;
+
 class User {
     friend class UserSystem;
     friend class LogInUser;
@@ -29,6 +31,7 @@ public:
 
 class LogInUser {
     friend class UserSystem;
+    friend class BookSystem;
     char user_id[UserMaxSize] = {0};
     int privilege;
     int selected_book_index;
@@ -40,6 +43,7 @@ public:
 };
 
 class UserSystem {
+    friend class BookSystem;
 private:
     std::vector<LogInUser> logged_users; //维护登录栈
     std::unordered_map<std::string,int> log_in_cnt;
@@ -51,7 +55,7 @@ private:
 
 public:
     explicit UserSystem();
-    ~UserSystem() = default;
+    ~UserSystem();
 
     User ReadUser(int index);
 
@@ -73,13 +77,12 @@ public:
     // * 在user.main文件中添加新user，更新log_in_cnt[user_id] = 0,在user.ull中添加新索引
     void UserAdd(const char *user_id, const char *passwd, const int &privilege, const char *user_name);
 
-
     // * 只在文件中修改密码
     void Passwd(const char *user_id, const char *new_passwd,const char * current_passwd = nullptr);
 
     void Delete(const char *user_id);
 
-    void Select (const char *isbn);
+    void Select (const char *isbn, BookSystem &book_system);
 };
 
 #endif //BOOKSTORE_2022_USERSYSTEM_H
