@@ -5,7 +5,7 @@ std::vector<std::string> SplitString(std::string command) {
     std::vector<std::string> ans;
     for (int i = 0; i < command.length(); ++i) {
         std::string chunk;
-        while (command[i] != ' ' && command[i] != '\0') {
+        while (command[i] != ' ' && i < command.length()) {
             chunk += command[i];
             ++i;
         }
@@ -54,6 +54,7 @@ void GetNameAuthorKeyword(char *x, const std::string &chunk, bool allow_more_key
 
 int processLine(std::string command, UserSystem &user_system, BookSystem &book_system) {
     std::vector<std::string> split_chunks = SplitString(command);
+    if (split_chunks.empty()) return 1;
     std::string first_chunk =  split_chunks.front();
     if (first_chunk == "quit" || first_chunk == "exit") return 0;
     char user_id[UserMaxSize] = {0};

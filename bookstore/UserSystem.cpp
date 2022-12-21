@@ -87,9 +87,10 @@ void UserSystem::Passwd(const char *user_id, const char *new_passwd, const char 
 }
 
 void UserSystem::Delete(const char *user_id) {
+    if (current_user_privilege < 7) throw Exception("under privilege");
     int index = FindTheUser(user_id);
     if (log_in_cnt[std::string(user_id)] > 0) throw Exception("user logged in");
-    user_ull.remove(user_id,index);
+    user_ull.remove(user_id, index);
 }
 
 void UserSystem::Select(const char *isbn, BookSystem &book_system) {

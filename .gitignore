@@ -9,5 +9,5 @@ clear.sh
 test.sh
 file.txt
 other.txt
-./testcases
+testcases
 test.0
