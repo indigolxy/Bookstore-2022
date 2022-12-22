@@ -78,6 +78,8 @@ void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
     if (chunk.size() > 71) throw Exception("too long keyword");
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
+    if (chunk[10] == '|' || chunk[chunk.length() - 2] == '|') throw Exception("empty keyword");
+
     for (int i = 10; i < chunk.size() - 1 ;++i) {
         if (chunk[i] == '"') throw Exception("invalid input");
         if (chunk[i] == '|' && !allow_more_keywords) throw Exception("more than one keyword");
