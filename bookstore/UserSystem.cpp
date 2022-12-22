@@ -70,6 +70,7 @@ void UserSystem::Register(const char *user_id, const char *passwd, const char *u
 
 void UserSystem::UserAdd(const char *user_id, const char *passwd, const int &privilege, const char *user_name) {
     if (current_user_privilege < 3 || privilege >= current_user_privilege) throw Exception("under privilege");
+    if (privilege != 1 && privilege != 3 && privilege != 7) throw Exception("invalid privilege");
     std::vector<int> find_ans = user_ull.find(user_id);
     if (!find_ans.empty()) throw Exception("user already exists");
     PureAddUser(user_id,passwd,user_name,privilege);
