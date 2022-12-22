@@ -7,9 +7,9 @@ std::vector<std::string> SplitString(std::string command) {
     while (command[j] == ' ') { ++j; }
     std::vector<std::string> ans;
     for (int i = j; i < command.length(); ++i) {
-        if (!isprint(command[i])) throw Exception("invisible character");
         std::string chunk;
         while (command[i] != ' ' && i < command.length()) {
+            if (!isprint(command[i])) throw Exception("invisible character");
             chunk += command[i];
             ++i;
         }
