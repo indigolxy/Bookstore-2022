@@ -14,7 +14,7 @@ std::vector<std::string> SplitString(std::string command) {
             ++i;
         }
         ans.push_back(chunk);
-        while (command[i + 1] == ' ') { ++i; }
+        while (i < command.length() - 1 && command[i + 1] == ' ') { ++i; }
     }
     return ans;
 }
