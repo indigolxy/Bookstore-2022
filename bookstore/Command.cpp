@@ -1,6 +1,6 @@
 
 #include "Command.h"
-#include<ctype.h>
+#include <ctype.h>
 
 std::vector<std::string> SplitString(std::string command) {
     int j = 0;
@@ -48,7 +48,6 @@ int IsValidPrivilege(const std::string &x) {
 void GetIsbn(char *x, const std::string &chunk) {
     if (chunk.size() <= 6) throw Exception("empty info");
     if (chunk.size() > 26) throw Exception("too long ISBN");
-    if (chunk.substr(0,6) != "-ISBN=") throw Exception("invalid input");
     for (int i = 6;i < chunk.size();++i) {
         if (!std::isprint(chunk[i])) throw Exception("is not print character");
         x[i - 6] = chunk[i];
@@ -58,7 +57,6 @@ void GetIsbn(char *x, const std::string &chunk) {
 void GetName(char *x, const std::string &chunk) {
     if (chunk.size() <= 8) throw Exception("empty info");
     if (chunk.size() > 68) throw Exception("too long book name");
-    if (chunk.substr(0,7) != "-name=\"") throw Exception("invalid input");
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 7; i < chunk.size() - 1 ;++i) {
@@ -71,7 +69,6 @@ void GetName(char *x, const std::string &chunk) {
 void GetAuthor(char *x, const std::string &chunk) {
     if (chunk.size() <= 10) throw Exception("empty info");
     if (chunk.size() > 70) throw Exception("too long book author");
-    if (chunk.substr(0,9) != "-author=\"") throw Exception("invalid input");
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 9; i < chunk.size() - 1 ;++i) {
@@ -84,7 +81,6 @@ void GetAuthor(char *x, const std::string &chunk) {
 void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
     if (chunk.size() <= 11) throw Exception("empty info");
     if (chunk.size() > 71) throw Exception("too long keyword");
-    if (chunk.substr(0,10) != "-keyword=\"") throw Exception("invalid input");
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 10; i < chunk.size() - 1 ;++i) {
@@ -235,22 +231,22 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         else {
             if (split_chunks.size() != 2) throw Exception("invalid input");
             std::string para = split_chunks[1];
-            if (para[1] == 'I') {
+            if (para.substr(0,6) == "-ISBN=") {
                 char isbn_tmp[MaxIsbnSize] = {0};
                 GetIsbn(isbn_tmp, para);
                 book_system.ShowIsbn(isbn_tmp, user_system);
             }
-            else if (para[1] == 'n') {
+            else if (para.substr(0,7) == "-name=\"") {
                 char name_tmp[MaxBookSize] = {0};;
                 GetName(name_tmp, para);
                 book_system.ShowName(name_tmp,user_system);
             }
-            else if (para[1] == 'a') {
+            else if (para.substr(0,9) == "-author=\"") {
                 char author_tmp[MaxBookSize] = {0};
                 GetAuthor(author_tmp, para);
                 book_system.ShowAuthor(author_tmp, user_system);
             }
-            else if (para[1] == 'k') {
+            else if (para.substr(0,10) == "-keyword=\"") {
                 char key_tmp[MaxBookSize] = {0};
                 GetKeyword(key_tmp, para, false);
                 book_system.ShowKeyword(key_tmp, user_system);
@@ -292,31 +288,32 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
 
         for (int i = 1;i < split_chunks.size();++i) {
             std::string para = split_chunks[i];
-            if (para[1] == 'I') {
+            if (para.substr(0,6) == "-ISBN=") {
                 if (modified[0]) throw Exception("repeated modifications");
                 GetIsbn(isbn_tmp, para);
                 modified[0] = true;
             }
-            else if (para[1] == 'n') {
+            else if (para.substr(0,7) == "-name=\"") {
                 if (modified[1]) throw Exception("repeated modifications");
                 GetName(name_tmp, para);
                 modified[1] = true;
             }
-            else if (para[1] == 'a') {
+            else if (para.substr(0,9) == "-author=\"") {
                 if (modified[2]) throw Exception("repeated modifications");
                 GetAuthor(author_tmp, para);
                 modified[2] = true;
             }
-            else if (para[1] == 'k') {
+            else if (para.substr(0,10) == "-keyword=\"") {
                 if (modified[3]) throw Exception("repeated modifications");
                 GetKeyword(keyword_tmp, para, true);
                 modified[3] = true;
             }
-            else if (para[1] == 'p') {
+            else if (para.substr(0,7) == "-price=") {
                 if (modified[4]) throw Exception("repeated modifications");
                 price_tmp = GetPriceTotal(para.substr(7));
                 modified[4] = true;
             }
+            else throw Exception("invalid input");
         }
         if (!modified[0]) isbn = nullptr;
         if (!modified[1]) name = nullptr;
