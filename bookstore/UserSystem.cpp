@@ -95,6 +95,7 @@ void UserSystem::Delete(const char *user_id) {
 
 void UserSystem::Select(const char *isbn, BookSystem &book_system) {
     if (current_user_privilege < 3) throw Exception("under privilege");
+//    if (logged_users.back().selected_book_index != -1) throw Exception("already selected a book");
     std::vector<int> ans = book_system.book_isbn_ull.find(isbn);
     if (ans.empty()) {
         logged_users.back().selected_book_index = book_system.WriteNewBook(isbn);

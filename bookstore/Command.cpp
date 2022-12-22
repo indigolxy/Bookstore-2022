@@ -20,12 +20,16 @@ void StringToChar(char *x,const std::string &y) {
     }
 }
 
-void IsValidUserid(const std::string &x) {
-    if (x.length() > 30) throw Exception("invalid input");
+void IsValidUseridPasswd(const std::string &x) {
+    if (x.length() > 30) throw Exception("too long userid or password");
     for (int i = 0;i < x.length();++i) {
         if ((x[i] >= 'A' && x[i] <= 'Z') || (x[i] >= 'a' && x[i] <= 'z') || (x[i] >= '0' && x[i] <= '9') || x[i] == '_') continue;
         else throw Exception("invalid input");
     }
+}
+
+void IsValidUsername(const std::string &x) {
+    if (x.length() > 30) throw Exception("too long username");
 }
 
 int IsValidPrivilege(const std::string &x) {
@@ -36,6 +40,7 @@ int IsValidPrivilege(const std::string &x) {
 
 void GetIsbn(char *x, const std::string &chunk) {
     if (chunk.size() <= 6) throw Exception("empty info");
+    if (chunk.size() > 26) throw Exception("too long ISBN");
     for (int i = 6;i < chunk.size();++i) {
         x[i - 6] = chunk[i];
     }
@@ -43,8 +48,9 @@ void GetIsbn(char *x, const std::string &chunk) {
 
 void GetNameAuthorKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
     int i = 0;
-    while (chunk[i] != '=') {++i;}
-    if (chunk[++i] == '\0') throw Exception("empty info");
+    while (chunk[i] != '"') {++i;}
+    if (chunk.size() - i - 2 > 60) throw Exception("too long info");
+    if (chunk.size() - i == 0) throw Exception("empty info");
     int st = ++i;
     for (;i < chunk.size() - 1;++i) {
         if (chunk[i] == '"' || (chunk[i] == '|' && !allow_more_keywords)) throw Exception("invalid input");
@@ -64,12 +70,17 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
 
     if (first_chunk == "su") {
         if (split_chunks.size() == 2) {
+            IsValidUseridPasswd(split_chunks[1]);
             StringToChar(user_id,split_chunks[1]);
             user_system.Su(user_id);
         }
         else if (split_chunks.size() == 3) {
+            IsValidUseridPasswd(split_chunks[1]);
+            IsValidUseridPasswd(split_chunks[2]);
+
             StringToChar(user_id,split_chunks[1]);
             StringToChar(user_passwd,split_chunks[2]);
+
             user_system.Su(user_id, user_passwd);
         }
         else throw Exception("invalid input");
@@ -80,22 +91,32 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "register") {
         if (split_chunks.size() != 4) throw Exception("invalid input");
-        IsValidUserid(split_chunks[1]);
-        IsValidUserid(split_chunks[2]);
+
+        IsValidUseridPasswd(split_chunks[1]);
+        IsValidUseridPasswd(split_chunks[2]);
+        IsValidUsername(split_chunks[3]);
+
         StringToChar(user_id, split_chunks[1]);
         StringToChar(user_passwd, split_chunks[2]);
         StringToChar(user_name, split_chunks[3]);
+
         user_system.Register(user_id, user_passwd, user_name);
     }
     else if (first_chunk == "passwd") {
         if (split_chunks.size() == 3) {
-            IsValidUserid(split_chunks[2]);
+            IsValidUseridPasswd(split_chunks[1]);
+            IsValidUseridPasswd(split_chunks[2]);
+
             StringToChar(user_id, split_chunks[1]);
             StringToChar(user_new_passwd, split_chunks[2]);
+
             user_system.Passwd(user_id, user_new_passwd);
         }
         else if (split_chunks.size() == 4) {
-            IsValidUserid(split_chunks[3]);
+            IsValidUseridPasswd(split_chunks[1]);
+            IsValidUseridPasswd(split_chunks[2]);
+            IsValidUseridPasswd(split_chunks[3]);
+
             StringToChar(user_id, split_chunks[1]);
             StringToChar(user_new_passwd, split_chunks[3]);
             StringToChar(user_passwd, split_chunks[2]);
@@ -105,16 +126,20 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "useradd") {
         if (split_chunks.size() != 5) throw Exception("invalid input");
-        IsValidUserid(split_chunks[1]);
-        IsValidUserid(split_chunks[2]);
+        IsValidUseridPasswd(split_chunks[1]);
+        IsValidUseridPasswd(split_chunks[2]);
         int privilege = IsValidPrivilege(split_chunks[3]);
+        IsValidUsername(split_chunks[4]);
+
         StringToChar(user_id, split_chunks[1]);
         StringToChar(user_passwd, split_chunks[2]);
         StringToChar(user_name, split_chunks[4]);
+
         user_system.UserAdd(user_id, user_passwd, privilege, user_name);
     }
     else if (first_chunk == "delete") {
         if (split_chunks.size() != 2) throw Exception("invalid input");
+        IsValidUseridPasswd(split_chunks[1]);
         StringToChar(user_id, split_chunks[1]);
         user_system.Delete(user_id);
     }
@@ -123,6 +148,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         else if (split_chunks[1] == "finance") {
             if (split_chunks.size() == 2) book_system.ShowFinanceAll(user_system);
             else if (split_chunks.size() == 3){
+                if (split_chunks[2].size() > 10) throw Exception("too long count");
                 int count = 0;
                 try {
                     count = std::stoi(split_chunks[2]);
@@ -159,6 +185,9 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "buy") {
         if (split_chunks.size() != 3) throw Exception("invalid input");
+        if (split_chunks[1].size() > 20) throw Exception("too long isbn");
+        if (split_chunks[2].size() > 10) throw Exception("too long quantity");
+
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
         int quantity_tmp = 0;
@@ -172,6 +201,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "select") {
         if (split_chunks.size() != 2) throw Exception("invalid input");
+        if (split_chunks[1].size() > 20) throw Exception("too long isbn");
+
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
         user_system.Select(isbn_tmp, book_system);
@@ -189,6 +220,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         char *key = keyword_tmp;
         double price_tmp = -1;
         bool modified[5] = {false};
+
         for (int i = 1;i < split_chunks.size();++i) {
             std::string para = split_chunks[i];
             if (para[1] == 'I') {
@@ -213,6 +245,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             }
             else if (para[1] == 'p') {
                 if (modified[4]) throw Exception("repeated modifications");
+                if (para.substr(7).size() > 13) throw Exception("too long price");
+
                 try {
                     price_tmp = std::stod(para.substr(7));
                 }
@@ -228,6 +262,9 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "import") {
         if (split_chunks.size() != 3) throw Exception("invalid input");
+        if (split_chunks[1].size() > 10) throw Exception("too long quantity");
+        if (split_chunks[2].size() > 13) throw Exception("too long total cost");
+
         int quantity = 0;
         double total_cost = 0;
         try {

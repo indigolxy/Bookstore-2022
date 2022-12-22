@@ -34,10 +34,11 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
 void StringToChar(char *x, const std::string &y);
 
 /*
- * 判断是否是合法的user_id或passwd
+ * 判断是否是合法的user_id或passwd、username
  * 若不合法，抛出异常
  */
-void IsValidUserid(const std::string &x);
+void IsValidUseridPasswd(const std::string &x);
+void IsValidUsername(const std::string &x);
 
 /*
  * 判断是否为合法的privilege
@@ -51,6 +52,7 @@ int IsValidPrivilege(const std::string &x);
  * chunk格式形如-ISBN=aabbxx
  * 返回"aabbxx"（向char*中赋值）
  * 若为-ISBN=，抛出异常empty info
+ * 若ISBN长度>20，抛出异常
  */
 void GetIsbn(char *x, const std::string &chunk);
 
@@ -58,7 +60,8 @@ void GetIsbn(char *x, const std::string &chunk);
  * chunk格式形如-name="abcd";-keyword="aabbdjj";-author="sdfiwe"
  * 均不能出现“”，keyword中不能出现|（一起判断，抛出异常）
  * 若=号后为空，抛出异常
+ * 若长度>60, 抛出异常
  */
-void GetNameAuthorKeyword(char *x, const std::string &chunk);
+void GetNameAuthorKeyword(char *x, const std::string &chunk, bool allow_more_keywords);
 
 #endif //BOOKSTORE_2022_COMMAND_H

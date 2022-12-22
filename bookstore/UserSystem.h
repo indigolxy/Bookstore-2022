@@ -37,7 +37,7 @@ class LogInUser {
     int selected_book_index;
 public:
     explicit LogInUser() : privilege(-1), selected_book_index(-1) {}
-    explicit LogInUser(const User &user,const int &index) : privilege(user.privilege), selected_book_index(index) {
+    explicit LogInUser(const User &user,const int &index = -1) : privilege(user.privilege), selected_book_index(index) {
         strcpy(user_id,user.user_id);
     }
 };
