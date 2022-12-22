@@ -72,8 +72,10 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             StringToChar(user_passwd,split_chunks[2]);
             user_system.Su(user_id, user_passwd);
         }
+        else throw Exception("invalid input");
     }
     else if (first_chunk == "logout") {
+        if (split_chunks.size() != 1) throw Exception("invalid input");
         user_system.Logout();
     }
     else if (first_chunk == "register") {
@@ -92,13 +94,14 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             StringToChar(user_new_passwd, split_chunks[2]);
             user_system.Passwd(user_id, user_new_passwd);
         }
-        else {
+        else if (split_chunks.size() == 4) {
             IsValidUserid(split_chunks[3]);
             StringToChar(user_id, split_chunks[1]);
             StringToChar(user_new_passwd, split_chunks[3]);
             StringToChar(user_passwd, split_chunks[2]);
             user_system.Passwd(user_id, user_new_passwd, user_passwd);
         }
+        else throw Exception("invalid input");
     }
     else if (first_chunk == "useradd") {
         if (split_chunks.size() != 5) throw Exception("invalid input");
@@ -111,6 +114,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         user_system.UserAdd(user_id, user_passwd, privilege, user_name);
     }
     else if (first_chunk == "delete") {
+        if (split_chunks.size() != 2) throw Exception("invalid input");
         StringToChar(user_id, split_chunks[1]);
         user_system.Delete(user_id);
     }
@@ -118,15 +122,17 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         if (split_chunks.size() == 1) { book_system.ShowAll(user_system); }
         else if (split_chunks[1] == "finance") {
             if (split_chunks.size() == 2) book_system.ShowFinanceAll(user_system);
-            else {
+            else if (split_chunks.size() == 3){
                 int count = 0;
                 try {
                     count = std::stoi(split_chunks[2]);
                 } catch (...) {throw Exception("invalid count");}
                 book_system.ShowFinance(count, user_system);
             }
+            else throw Exception("invalid input");
         }
         else {
+            if (split_chunks.size() != 2) throw Exception("invalid input");
             std::string para = split_chunks[1];
             if (para[1] == 'I') {
                 char isbn_tmp[MaxIsbnSize] = {0};
@@ -148,9 +154,11 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
                 GetNameAuthorKeyword(key_tmp, para, false);
                 book_system.ShowKeyword(key_tmp, user_system);
             }
+            else throw Exception("invalid input");
         }
     }
     else if (first_chunk == "buy") {
+        if (split_chunks.size() != 3) throw Exception("invalid input");
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
         int quantity_tmp = 0;
@@ -163,11 +171,13 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         book_system.Buy(isbn_tmp, quantity_tmp, user_system);
     }
     else if (first_chunk == "select") {
+        if (split_chunks.size() != 2) throw Exception("invalid input");
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
         user_system.Select(isbn_tmp, book_system);
     }
     else if (first_chunk == "modify") {
+        if (split_chunks.size() == 1) throw Exception("invalid input");
         // * 有重复附加参数为非法指令； 附加参数内容为空则操作失败；
         char isbn_tmp[MaxIsbnSize] = {0};
         char *isbn = isbn_tmp;
@@ -217,6 +227,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         book_system.Modify(user_system, isbn, name, author, key, price_tmp);
     }
     else if (first_chunk == "import") {
+        if (split_chunks.size() != 3) throw Exception("invalid input");
         int quantity = 0;
         double total_cost = 0;
         try {

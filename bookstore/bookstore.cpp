@@ -12,7 +12,6 @@ int main () {
 
     std::string commandline;
     while (std::getline(std::cin,commandline)) {
-        ++cnt;
 //        std::cout << cnt << std::endl;
         try {
             if (processLine(commandline, user_system, book_system) == 0) break;
@@ -21,6 +20,7 @@ int main () {
             std::cout << "Invalid\n";
 //            std::cout << x.getMessage() << std::endl;
         }
+        ++cnt;
     }
 
     return 0;
