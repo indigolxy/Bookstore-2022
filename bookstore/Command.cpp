@@ -1,15 +1,19 @@
 
 #include "Command.h"
+#include<ctype.h>
 
 std::vector<std::string> SplitString(std::string command) {
+    int j = 0;
+    while (command[j] == ' ') { ++j; }
     std::vector<std::string> ans;
-    for (int i = 0; i < command.length(); ++i) {
+    for (int i = j; i < command.length(); ++i) {
         std::string chunk;
         while (command[i] != ' ' && i < command.length()) {
             chunk += command[i];
             ++i;
         }
         ans.push_back(chunk);
+        while (command[i + 1] == ' ') { ++i; }
     }
     return ans;
 }
@@ -30,6 +34,9 @@ void IsValidUseridPasswd(const std::string &x) {
 
 void IsValidUsername(const std::string &x) {
     if (x.length() > 30) throw Exception("too long username");
+    for (int i = 0;i < x.length();++i) {
+        if (!std::isprint(x[i])) throw Exception("is not print character");
+    }
 }
 
 int IsValidPrivilege(const std::string &x) {
@@ -41,20 +48,51 @@ int IsValidPrivilege(const std::string &x) {
 void GetIsbn(char *x, const std::string &chunk) {
     if (chunk.size() <= 6) throw Exception("empty info");
     if (chunk.size() > 26) throw Exception("too long ISBN");
+    if (chunk.substr(0,6) != "-ISBN=") throw Exception("invalid input");
     for (int i = 6;i < chunk.size();++i) {
+        if (!std::isprint(chunk[i])) throw Exception("is not print character");
         x[i - 6] = chunk[i];
     }
 }
 
-void GetNameAuthorKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
-    int i = 0;
-    while (chunk[i] != '"') {++i;}
-    if (chunk.size() - i - 2 > 60) throw Exception("too long info");
-    if (chunk.size() - i == 0) throw Exception("empty info");
-    int st = ++i;
-    for (;i < chunk.size() - 1;++i) {
-        if (chunk[i] == '"' || (chunk[i] == '|' && !allow_more_keywords)) throw Exception("invalid input");
-        x[i - st] = chunk[i];
+void GetName(char *x, const std::string &chunk) {
+    if (chunk.size() <= 8) throw Exception("empty info");
+    if (chunk.size() > 68) throw Exception("too long book name");
+    if (chunk.substr(0,7) != "-name=\"") throw Exception("invalid input");
+    if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
+
+    for (int i = 7; i < chunk.size() - 1 ;++i) {
+        if (!std::isprint(chunk[i])) throw Exception("book name is not print character");
+        if (chunk[i] == '"') throw Exception("invalid input");
+        x[i - 7] = chunk[i];
+    }
+}
+
+void GetAuthor(char *x, const std::string &chunk) {
+    if (chunk.size() <= 10) throw Exception("empty info");
+    if (chunk.size() > 70) throw Exception("too long book author");
+    if (chunk.substr(0,9) != "-author=\"") throw Exception("invalid input");
+    if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
+
+    for (int i = 9; i < chunk.size() - 1 ;++i) {
+        if (!std::isprint(chunk[i])) throw Exception("author is not print character");
+        if (chunk[i] == '"') throw Exception("invalid input");
+        x[i - 9] = chunk[i];
+    }
+}
+
+void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
+    if (chunk.size() <= 11) throw Exception("empty info");
+    if (chunk.size() > 71) throw Exception("too long keyword");
+    if (chunk.substr(0,10) != "-keyword=\"") throw Exception("invalid input");
+    if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
+
+    for (int i = 10; i < chunk.size() - 1 ;++i) {
+        if (!std::isprint(chunk[i])) throw Exception("keyword is not print character");
+        if (chunk[i] == '"') throw Exception("invalid input");
+        if (chunk[i] == '|' && !allow_more_keywords) throw Exception("more than one keyword");
+        if (chunk[i] == '|' && chunk[i + 1] == '|') throw Exception("empty keyword");
+        x[i - 10] = chunk[i];
     }
 }
 
@@ -167,17 +205,17 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             }
             else if (para[1] == 'n') {
                 char name_tmp[MaxBookSize] = {0};;
-                GetNameAuthorKeyword(name_tmp, para, false);
+                GetName(name_tmp, para);
                 book_system.ShowName(name_tmp,user_system);
             }
             else if (para[1] == 'a') {
                 char author_tmp[MaxBookSize] = {0};
-                GetNameAuthorKeyword(author_tmp, para, false);
+                GetAuthor(author_tmp, para);
                 book_system.ShowAuthor(author_tmp, user_system);
             }
             else if (para[1] == 'k') {
                 char key_tmp[MaxBookSize] = {0};
-                GetNameAuthorKeyword(key_tmp, para, false);
+                GetKeyword(key_tmp, para, false);
                 book_system.ShowKeyword(key_tmp, user_system);
             }
             else throw Exception("invalid input");
@@ -230,17 +268,17 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             }
             else if (para[1] == 'n') {
                 if (modified[1]) throw Exception("repeated modifications");
-                GetNameAuthorKeyword(name_tmp, para, true);
+                GetName(name_tmp, para);
                 modified[1] = true;
             }
             else if (para[1] == 'a') {
                 if (modified[2]) throw Exception("repeated modifications");
-                GetNameAuthorKeyword(author_tmp, para, true);
+                GetAuthor(author_tmp, para);
                 modified[2] = true;
             }
             else if (para[1] == 'k') {
                 if (modified[3]) throw Exception("repeated modifications");
-                GetNameAuthorKeyword(keyword_tmp, para, true);
+                GetKeyword(keyword_tmp, para, true);
                 modified[3] = true;
             }
             else if (para[1] == 'p') {

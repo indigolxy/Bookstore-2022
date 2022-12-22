@@ -53,15 +53,16 @@ int IsValidPrivilege(const std::string &x);
  * 返回"aabbxx"（向char*中赋值）
  * 若为-ISBN=，抛出异常empty info
  * 若ISBN长度>20，抛出异常
+ * 判断是否为不可见字符
  */
 void GetIsbn(char *x, const std::string &chunk);
 
 /*
- * chunk格式形如-name="abcd";-keyword="aabbdjj";-author="sdfiwe"
- * 均不能出现“”，keyword中不能出现|（一起判断，抛出异常）
- * 若=号后为空，抛出异常
- * 若长度>60, 抛出异常
+ * 判断不可见字符、双引号、-name="  "的格式，信息长度等
  */
-void GetNameAuthorKeyword(char *x, const std::string &chunk, bool allow_more_keywords);
+void GetName(char *x, const std::string &chunk);
+void GetAuthor(char *x, const std::string &chunk);
+
+void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords);
 
 #endif //BOOKSTORE_2022_COMMAND_H
