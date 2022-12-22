@@ -7,6 +7,7 @@ std::vector<std::string> SplitString(std::string command) {
     while (command[j] == ' ') { ++j; }
     std::vector<std::string> ans;
     for (int i = j; i < command.length(); ++i) {
+        if (!isprint(command[i])) throw Exception("invisible character");
         std::string chunk;
         while (command[i] != ' ' && i < command.length()) {
             chunk += command[i];
@@ -34,9 +35,6 @@ void IsValidUseridPasswd(const std::string &x) {
 
 void IsValidUsername(const std::string &x) {
     if (x.length() > 30) throw Exception("too long username");
-    for (int i = 0;i < x.length();++i) {
-        if (!std::isprint(x[i])) throw Exception("is not print character");
-    }
 }
 
 int IsValidPrivilege(const std::string &x) {
@@ -49,7 +47,6 @@ void GetIsbn(char *x, const std::string &chunk) {
     if (chunk.size() <= 6) throw Exception("empty info");
     if (chunk.size() > 26) throw Exception("too long ISBN");
     for (int i = 6;i < chunk.size();++i) {
-        if (!std::isprint(chunk[i])) throw Exception("is not print character");
         x[i - 6] = chunk[i];
     }
 }
@@ -60,7 +57,6 @@ void GetName(char *x, const std::string &chunk) {
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 7; i < chunk.size() - 1 ;++i) {
-        if (!std::isprint(chunk[i])) throw Exception("book name is not print character");
         if (chunk[i] == '"') throw Exception("invalid input");
         x[i - 7] = chunk[i];
     }
@@ -72,7 +68,6 @@ void GetAuthor(char *x, const std::string &chunk) {
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 9; i < chunk.size() - 1 ;++i) {
-        if (!std::isprint(chunk[i])) throw Exception("author is not print character");
         if (chunk[i] == '"') throw Exception("invalid input");
         x[i - 9] = chunk[i];
     }
@@ -84,7 +79,6 @@ void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
     if (chunk[chunk.length() - 1] != '"') throw Exception("invalid input");
 
     for (int i = 10; i < chunk.size() - 1 ;++i) {
-        if (!std::isprint(chunk[i])) throw Exception("keyword is not print character");
         if (chunk[i] == '"') throw Exception("invalid input");
         if (chunk[i] == '|' && !allow_more_keywords) throw Exception("more than one keyword");
         if (chunk[i] == '|' && chunk[i + 1] == '|') throw Exception("empty keyword");
@@ -136,7 +130,9 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     std::vector<std::string> split_chunks = SplitString(command);
     if (split_chunks.empty()) return 1;
     std::string first_chunk =  split_chunks.front();
-    if (first_chunk == "quit" || first_chunk == "exit") return 0;
+    if (first_chunk == "quit" || first_chunk == "exit") {
+        return 0;
+    }
     char user_id[UserMaxSize] = {0};
     char user_passwd[UserMaxSize] = {0};
     char user_name[UserMaxSize] = {0};
