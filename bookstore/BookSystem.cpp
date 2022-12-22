@@ -101,7 +101,6 @@ void BookSystem::ShowKeyword(const char *keyword, const UserSystem &user_system)
 void BookSystem::Buy(const char *isbn, int quantity, const UserSystem &user_system) {
     if (user_system.current_user_privilege < 1) throw Exception("under privilege");
     if (book_isbn_ull.find(isbn).empty()) throw Exception("invalid isbn");
-    if (quantity <= 0) throw Exception("invalid quantity");
     int index = book_isbn_ull.find(isbn).front();
     int quantity_tmp;
     double price_tmp;
@@ -192,7 +191,6 @@ void BookSystem::Import(const int &quantity, double total_cost, const UserSystem
     int index_tmp = user_system.logged_users.back().selected_book_index;
     if (index_tmp == -1) throw Exception("no selected book");
 
-    if (quantity <= 0) throw Exception("invalid quantity");
     if (total_cost <= 0) throw Exception("invalid total cost");
 
     int pre_quantity = 0;

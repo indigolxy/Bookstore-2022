@@ -65,4 +65,10 @@ void GetAuthor(char *x, const std::string &chunk);
 
 void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords);
 
+// * 保证quantity是合法正整数
+int GetQuantityCount(const std::string &x);
+
+// * 保证输入是合法的double
+double GetPriceTotal(const std::string &x);
+
 #endif //BOOKSTORE_2022_COMMAND_H

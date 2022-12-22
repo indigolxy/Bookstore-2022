@@ -96,6 +96,46 @@ void GetKeyword(char *x, const std::string &chunk, bool allow_more_keywords) {
     }
 }
 
+int GetQuantityCount(const std::string &x) {
+    if (x.length() > 10) throw Exception("too long quantity");
+    if (x[0] == '0' && x.length() > 1) throw Exception("invalid 0s in quantity");
+    int ans = 0;
+    for (int i = 0; i < x.length(); ++i) {
+        if (x[i] < '0' || x[i] > '9') throw Exception("not number in quantity");
+        ans *= 10;
+        ans += x[i] - '0';
+    }
+    return ans;
+}
+
+double GetPriceTotal(const std::string &x) {
+    if (x.length() > 13) throw Exception("too long price or total cost");
+    if (x[0] == '.' || x[x.length() - 1] == '.') throw Exception("invalid price or total cost");
+    if (x[0] == '0' && x.length() > 1) throw Exception("invalid 0s in price or total cost");
+
+    double ans_before = 0, ans_after = 0, div = 1.0;
+    bool flag = false;
+    for (const char &ch : x) {
+        if (ch == '.' && flag) throw Exception("two dots");
+        if (ch == '.') {
+            flag = true;
+            continue;
+        }
+        if (ch < '0' || ch > '9') throw Exception("not number in price or total cost");
+        if (!flag) {
+            ans_before *= 10.0;
+            ans_before += double(ch - '0');
+        }
+        else {
+            ans_after *= 10.0;
+            ans_after += double(ch - '0');
+            div *= 10.0;
+        }
+    }
+    if (flag) return (ans_before + ans_after / div);
+    else return ans_before;
+}
+
 int processLine(std::string command, UserSystem &user_system, BookSystem &book_system) {
     std::vector<std::string> split_chunks = SplitString(command);
     if (split_chunks.empty()) return 1;
@@ -187,10 +227,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             if (split_chunks.size() == 2) book_system.ShowFinanceAll(user_system);
             else if (split_chunks.size() == 3){
                 if (split_chunks[2].size() > 10) throw Exception("too long count");
-                int count = 0;
-                try {
-                    count = std::stoi(split_chunks[2]);
-                } catch (...) {throw Exception("invalid count");}
+                int count = GetQuantityCount(split_chunks[2]);
                 book_system.ShowFinance(count, user_system);
             }
             else throw Exception("invalid input");
@@ -228,13 +265,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
 
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
-        int quantity_tmp = 0;
-        try {
-            quantity_tmp = std::stoi(split_chunks[2]);
-        }
-        catch (...) {
-            throw Exception("invalid quantity");
-        }
+        int quantity_tmp = GetQuantityCount(split_chunks[2]);
         book_system.Buy(isbn_tmp, quantity_tmp, user_system);
     }
     else if (first_chunk == "select") {
@@ -283,12 +314,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             }
             else if (para[1] == 'p') {
                 if (modified[4]) throw Exception("repeated modifications");
-                if (para.substr(7).size() > 13) throw Exception("too long price");
-
-                try {
-                    price_tmp = std::stod(para.substr(7));
-                }
-                catch (...) { throw Exception("invalid price"); }
+                price_tmp = GetPriceTotal(para.substr(7));
                 modified[4] = true;
             }
         }
@@ -300,16 +326,9 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
     }
     else if (first_chunk == "import") {
         if (split_chunks.size() != 3) throw Exception("invalid input");
-        if (split_chunks[1].size() > 10) throw Exception("too long quantity");
-        if (split_chunks[2].size() > 13) throw Exception("too long total cost");
 
-        int quantity = 0;
-        double total_cost = 0;
-        try {
-            quantity = std::stoi(split_chunks[1]);
-            total_cost = std::stod(split_chunks[2]);
-        }
-        catch (...) { throw Exception("invalid input"); }
+        int quantity = GetQuantityCount(split_chunks[1]);
+        double total_cost = GetPriceTotal(split_chunks[2]);
         book_system.Import(quantity, total_cost, user_system);
     }
     else if (first_chunk == "log") {
