@@ -101,6 +101,7 @@ void BookSystem::ShowKeyword(const char *keyword, const UserSystem &user_system)
 void BookSystem::Buy(const char *isbn, int quantity, const UserSystem &user_system) {
     if (user_system.current_user_privilege < 1) throw Exception("under privilege");
     if (book_isbn_ull.find(isbn).empty()) throw Exception("invalid isbn");
+    if (quantity <= 0) throw Exception("unpositive quantity");
     int index = book_isbn_ull.find(isbn).front();
     int quantity_tmp;
     double price_tmp;
@@ -178,7 +179,7 @@ void BookSystem::Modify(const UserSystem &user_system, const char *isbn, const c
             book_keyword_ull.insert(key_tmp,index_tmp);
         }
     }
-    if (price >= 0) {
+    if (price > 0) {
         modified_book.price = price;
     }
 
