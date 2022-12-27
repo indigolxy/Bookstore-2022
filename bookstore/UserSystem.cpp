@@ -1,6 +1,7 @@
 
 #include "UserSystem.h"
 #include "BookSystem.h"
+#include <iomanip>
 
 User::User(const char *_user_id,const char *_passwd,const char *_user_name,int privilege) : privilege(privilege) {
     strcpy(user_id,_user_id);
@@ -14,6 +15,10 @@ UserSystem::UserSystem() : user_ull("user_other.ull","user_main.ull"),current_us
     file.close();
     file.clear();
     file.open("user.main",std::fstream::in | std::fstream::out | std::fstream::binary);
+    log_user_file.open("log.user",std::fstream::app | std::fstream::binary);
+    log_user_file.close();
+    log_user_file.clear();
+    log_user_file.open("log.user",std::fstream::in | std::fstream::out | std::fstream::binary);
 }
 
 UserSystem::~UserSystem() {
@@ -103,4 +108,35 @@ void UserSystem::Select(const char *isbn, BookSystem &book_system) {
         return;
     }
     logged_users.back().selected_book_index = ans.front();
+}
+
+void UserSystem::WriteLogUser(std::string command) {
+    char user_id[UserMaxSize] = {0};
+    if (!logged_users.empty()) strcpy(user_id,logged_users.back().user_id);
+    char command_[CommandMaxSize] = {0};
+    for (int i = 0;i < command.length();++i) {
+        command_[i] = command[i];
+    }
+    log_user_file.seekp(0,std::ios::end);
+    log_user_file.write(user_id, UserMaxSize);
+    log_user_file.write(command_, CommandMaxSize);
+}
+
+void UserSystem::ShowLogUser() {
+    log_user_file.seekg(0);
+    while (true) {
+        std::string user_id;
+        char command_[CommandMaxSize] = {0};
+        log_user_file.read(reinterpret_cast<char *> (&user_id), UserMaxSize);
+        log_user_file.read(command_, CommandMaxSize);
+
+        if (log_user_file.eof()) {
+            log_user_file.clear();
+            break;
+        }
+
+        if (user_id.empty()) std::cout << std::left << std::setw(UserMaxSize) << "visitor:" << " ";
+        else std::cout << std::left << std::setw(UserMaxSize) << user_id << ':' << " ";
+        std::cout << command_ << std::endl;
+    }
 }

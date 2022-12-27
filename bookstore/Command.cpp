@@ -1,6 +1,6 @@
 
 #include "Command.h"
-#include <ctype.h>
+#include <cctype>
 
 std::vector<std::string> SplitString(std::string command) {
     int j = 0;
@@ -92,10 +92,10 @@ int GetQuantityCount(const std::string &x) {
     if (x.length() > 10) throw Exception("too long quantity");
     if (x[0] == '0' && x.length() > 1) throw Exception("invalid 0s in quantity");
     int ans = 0;
-    for (int i = 0; i < x.length(); ++i) {
-        if (x[i] < '0' || x[i] > '9') throw Exception("not number in quantity");
+    for (char i : x) {
+        if (i < '0' || i > '9') throw Exception("not number in quantity");
         ans *= 10;
-        ans += x[i] - '0';
+        ans += i - '0';
     }
     return ans;
 }
@@ -144,6 +144,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         if (split_chunks.size() == 2) {
             IsValidUseridPasswd(split_chunks[1]);
             StringToChar(user_id,split_chunks[1]);
+
+            user_system.WriteLogUser(command);
             user_system.Su(user_id);
         }
         else if (split_chunks.size() == 3) {
@@ -153,12 +155,14 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             StringToChar(user_id,split_chunks[1]);
             StringToChar(user_passwd,split_chunks[2]);
 
+            user_system.WriteLogUser(command);
             user_system.Su(user_id, user_passwd);
         }
         else throw Exception("invalid input");
     }
     else if (first_chunk == "logout") {
         if (split_chunks.size() != 1) throw Exception("invalid input");
+        user_system.WriteLogUser(command);
         user_system.Logout();
     }
     else if (first_chunk == "register") {
@@ -172,6 +176,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         StringToChar(user_passwd, split_chunks[2]);
         StringToChar(user_name, split_chunks[3]);
 
+        user_system.WriteLogUser(command);
         user_system.Register(user_id, user_passwd, user_name);
     }
     else if (first_chunk == "passwd") {
@@ -182,6 +187,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             StringToChar(user_id, split_chunks[1]);
             StringToChar(user_new_passwd, split_chunks[2]);
 
+            user_system.WriteLogUser(command);
             user_system.Passwd(user_id, user_new_passwd);
         }
         else if (split_chunks.size() == 4) {
@@ -192,6 +198,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             StringToChar(user_id, split_chunks[1]);
             StringToChar(user_new_passwd, split_chunks[3]);
             StringToChar(user_passwd, split_chunks[2]);
+
+            user_system.WriteLogUser(command);
             user_system.Passwd(user_id, user_new_passwd, user_passwd);
         }
         else throw Exception("invalid input");
@@ -207,12 +215,15 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         StringToChar(user_passwd, split_chunks[2]);
         StringToChar(user_name, split_chunks[4]);
 
+        user_system.WriteLogUser(command);
         user_system.UserAdd(user_id, user_passwd, privilege, user_name);
     }
     else if (first_chunk == "delete") {
         if (split_chunks.size() != 2) throw Exception("invalid input");
         IsValidUseridPasswd(split_chunks[1]);
         StringToChar(user_id, split_chunks[1]);
+
+        user_system.WriteLogUser(command);
         user_system.Delete(user_id);
     }
     else if (first_chunk == "show") {
@@ -222,7 +233,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             else if (split_chunks.size() == 3){
                 if (split_chunks[2].size() > 10) throw Exception("too long count");
                 int count = GetQuantityCount(split_chunks[2]);
-                if (count <= 0) throw Exception("count <= 0");
+                if (count < 0) throw Exception("count < 0");
                 book_system.ShowFinance(count, user_system);
             }
             else throw Exception("invalid input");
@@ -262,6 +273,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         StringToChar(isbn_tmp, split_chunks[1]);
         int quantity_tmp = GetQuantityCount(split_chunks[2]);
         if (quantity_tmp <= 0) throw Exception("quantity <= 0");
+
+        user_system.WriteLogUser(command);
         book_system.Buy(isbn_tmp, quantity_tmp, user_system);
     }
     else if (first_chunk == "select") {
@@ -270,6 +283,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
 
         char isbn_tmp[MaxIsbnSize] = {0};
         StringToChar(isbn_tmp, split_chunks[1]);
+
+        user_system.WriteLogUser(command);
         user_system.Select(isbn_tmp, book_system);
     }
     else if (first_chunk == "modify") {
@@ -320,6 +335,8 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         if (!modified[1]) name = nullptr;
         if (!modified[2]) author = nullptr;
         if (!modified[3]) key = nullptr;
+
+        user_system.WriteLogUser(command);
         book_system.Modify(user_system, isbn, name, author, key, price_tmp);
     }
     else if (first_chunk == "import") {
@@ -329,10 +346,18 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
         if (quantity <= 0) throw Exception("quantity <= 0");
         double total_cost = GetPriceTotal(split_chunks[2]);
         if (total_cost <= 0) throw Exception("total cost <= 0");
+
+        user_system.WriteLogUser(command);
         book_system.Import(quantity, total_cost, user_system);
     }
     else if (first_chunk == "log") {
-        // todo
+        int count = book_system.GetLogCount(user_system);
+        std::cout << "BOOKSTORE LOG for FINANCE" << std::endl;
+        std::cout << "-----------------------------------------------------------" << std::endl;
+        book_system.ShowFinance(count, user_system);
+        std::cout << "\nBOOKSTORE LOG for USER" << std::endl;
+        std::cout << "-----------------------------------------------------------" << std::endl;
+        user_system.ShowLogUser();
     }
     else throw Exception("invalid input");
     

@@ -12,6 +12,7 @@
 #include "error.h"
 
 constexpr int UserMaxSize = 35;
+constexpr int CommandMaxSize = 1024;
 
 class BookSystem;
 
@@ -52,9 +53,10 @@ private:
     int current_user_privilege;
     BlockList user_ull; // ("user_other_file","user_main_file") // 块状链表存储已注册用户 user_id-index
     std::fstream file;
+    std::fstream log_user_file;
 
 public:
-    explicit UserSystem();
+    UserSystem();
     ~UserSystem();
 
     User ReadUser(int index);
@@ -83,6 +85,14 @@ public:
     void Delete(const char *user_id);
 
     void Select (const char *isbn, BookSystem &book_system);
+
+    /*
+     * 如果指令合法，将整行指令作为参数传入（show指令不记录）
+     * 将command内容和当前操作用户id一起写入log_user_file
+     */
+    void WriteLogUser(std::string command);
+
+    void ShowLogUser();
 };
 
 #endif //BOOKSTORE_2022_USERSYSTEM_H

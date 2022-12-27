@@ -105,6 +105,9 @@ public:
      */
     void ShowFinance(int count, const UserSystem &user_system);
 
+    // * 返回现有所有交易笔数
+    int GetLogCount(const UserSystem &user_system);
+
     /*
      * 遍历log_finance_file得到每一次记录 ，分收入与支出加和
      * 并按格式输出：+ [收入] - [支出]\n

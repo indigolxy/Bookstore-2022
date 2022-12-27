@@ -228,6 +228,13 @@ void BookSystem::ShowFinance(int count, const UserSystem &user_system) {
     else std::cout << "+ " << income << " - " << -cost << std::endl;
 }
 
+int BookSystem::GetLogCount(const UserSystem &user_system) {
+    if (user_system.current_user_privilege < 7) throw Exception("under privilege");
+    log_finance_file.seekg(0,std::ios::end);
+    int len = log_finance_file.tellg();
+    return len / sizeof(double);
+}
+
 void BookSystem::ShowFinanceAll(const UserSystem &user_system) {
     if (user_system.current_user_privilege < 7)  throw Exception("under privilege");
     double income = 0.0;
