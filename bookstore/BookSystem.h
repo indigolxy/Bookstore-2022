@@ -140,7 +140,6 @@ public:
         }
         return false;
     }
-
 };
 
 #endif //BOOKSTORE_2022_BOOKSYSTEM_H
