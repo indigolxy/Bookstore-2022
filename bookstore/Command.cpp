@@ -326,7 +326,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
             else if (para.substr(0,7) == "-price=") {
                 if (modified[4]) throw Exception("repeated modifications");
                 price_tmp = GetPriceTotal(para.substr(7));
-                if (price_tmp <= 0) throw Exception("price <= 0");
+                if (price_tmp < 0) throw Exception("price < 0");
                 modified[4] = true;
             }
             else throw Exception("invalid input");
