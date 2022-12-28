@@ -123,11 +123,12 @@ void UserSystem::WriteLogUser(std::string command) {
 }
 
 void UserSystem::ShowLogUser() {
+    char empty_user[UserMaxSize] = {0};
     log_user_file.seekg(0);
     while (true) {
-        std::string user_id;
+        char user_id[UserMaxSize] = {0};
         char command_[CommandMaxSize] = {0};
-        log_user_file.read(reinterpret_cast<char *> (&user_id), UserMaxSize);
+        log_user_file.read(user_id, UserMaxSize);
         log_user_file.read(command_, CommandMaxSize);
 
         if (log_user_file.eof()) {
@@ -135,8 +136,8 @@ void UserSystem::ShowLogUser() {
             break;
         }
 
-        if (user_id.empty()) std::cout << std::left << std::setw(UserMaxSize) << "visitor:" << " ";
-        else std::cout << std::left << std::setw(UserMaxSize) << user_id << ':' << " ";
+        if (strcmp(user_id, empty_user) == 0) std::cout << std::left << std::setw(UserMaxSize) << "visitor" << " ";
+        else std::cout << std::left << std::setw(UserMaxSize) << user_id << " ";
         std::cout << command_ << std::endl;
     }
 }

@@ -6,4 +6,5 @@ rm name_main.ull name_other.ull
 rm author_main.ull author_other.ull
 rm book.main
 rm user.main
-rm log.finance log.user
+rm log.finance
+rm log.user

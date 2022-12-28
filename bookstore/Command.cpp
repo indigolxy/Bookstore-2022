@@ -247,7 +247,7 @@ int processLine(std::string command, UserSystem &user_system, BookSystem &book_s
                 book_system.ShowIsbn(isbn_tmp, user_system);
             }
             else if (para.substr(0,7) == "-name=\"") {
-                char name_tmp[MaxBookSize] = {0};;
+                char name_tmp[MaxBookSize] = {0};
                 GetName(name_tmp, para);
                 book_system.ShowName(name_tmp,user_system);
             }
